@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Little Things — Remember people by the little things</title>
+    <meta
+      name="description"
+      content="Little Things is a private place to keep notes, moments, gift ideas, and reminders about the people you care about. No account. No cloud. Notes stay on your device."
+    />
+    <meta name="theme-color" content="#F4EBDC" />
+    <meta property="og:title" content="Little Things" />
+    <meta
+      property="og:description"
+      content="A private place to remember the little things about the people who matter."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="./assets/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,50..100,0..1&family=Inter:wght@300;400;500;600;700;800&family=Caveat:wght@500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Little Things",
+        "applicationCategory": "LifestyleApplication",
+        "operatingSystem": "iOS",
+        "description": "A private relationship memory app for notes, moments, gift ideas, and reminders about the people you care about."
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="paper-vignette" aria-hidden="true"></div>
+
+    <header class="site-nav" aria-label="Primary navigation">
+      <a class="brand-mark" href="#top" aria-label="Little Things home">
+        <img src="./assets/icon.png" alt="" />
+        <span>Little Things</span>
+      </a>
+      <nav class="desktop-links" aria-label="Page sections">
+        <a href="#why">Why</a>
+        <a href="#story">The app</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#docs">Docs</a>
+      </nav>
+      <a class="nav-button magnetic" href="#beta">
+        <span>Join beta</span>
+        <i aria-hidden="true">&nearr;</i>
+      </a>
+      <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" data-menu-toggle>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <div class="menu-overlay" data-menu-overlay aria-hidden="true">
+      <nav aria-label="Mobile navigation">
+        <a href="#why">Why</a>
+        <a href="#story">The app</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#docs">Docs</a>
+        <a href="#beta">Join beta</a>
+      </nav>
+    </div>
+
+    <main id="main">
+      <!-- =============================== HERO =============================== -->
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow"><i aria-hidden="true"></i><span>A quiet kind of memory app</span></p>
+            <h1 id="hero-title" data-split-heading>
+              <span class="line">Remember people</span>
+              <span class="line"><em>by the little things.</em></span>
+            </h1>
+            <p class="hero-lede">
+              A private place for the small details about the people you care about.
+              Notes, moments, gift ideas, and gentle reminders &mdash; kept the way
+              you would write them in a notebook.
+            </p>
+            <div class="hero-actions">
+              <a class="primary-action magnetic" href="#beta">
+                <span>Join the beta</span>
+                <i aria-hidden="true">&nearr;</i>
+              </a>
+              <a class="text-action" href="#story">
+                <span>See how it works</span>
+                <i aria-hidden="true">&rarr;</i>
+              </a>
+            </div>
+            <ul class="hero-trust" aria-label="Privacy summary">
+              <li><span class="dot" aria-hidden="true"></span>No account</li>
+              <li><span class="dot" aria-hidden="true"></span>No Little Things cloud</li>
+              <li><span class="dot" aria-hidden="true"></span>Notes stay on your device</li>
+            </ul>
+          </div>
+
+          <div class="hero-stage" data-tilt-stage aria-label="Little Things app preview">
+            <div class="stage-rings" aria-hidden="true">
+              <span class="ring ring-1"></span>
+              <span class="ring ring-2"></span>
+              <span class="ring ring-3"></span>
+            </div>
+
+            <article class="orbit-card orbit-card-1" data-float-card style="--drift-delay: 0s;">
+              <span class="card-tag">Gift idea</span>
+              <strong>Vintage camera strap</strong>
+              <span class="card-meta">For James &middot; saw it in a shop window</span>
+            </article>
+            <article class="orbit-card orbit-card-2" data-float-card style="--drift-delay: -3.4s;">
+              <span class="card-tag tag-sage">Before a call</span>
+              <strong>Ask about the new job</strong>
+              <span class="card-meta">Mum &middot; she was nervous last week</span>
+            </article>
+            <article class="orbit-card orbit-card-3" data-float-card style="--drift-delay: -6.7s;">
+              <span class="card-tag tag-rose">Moment</span>
+              <strong>Sunday pasta night</strong>
+              <span class="card-meta">14 July &middot; she laughed until she cried</span>
+            </article>
+            <article class="orbit-card orbit-card-4" data-float-card style="--drift-delay: -10s;">
+              <span class="card-tag tag-lavender">Gentle nudge</span>
+              <strong>Dad has gone quiet</strong>
+              <span class="card-meta">30 days &middot; the knee, the garden</span>
+            </article>
+
+            <div class="device hero-device capture-device" aria-hidden="true">
+              <div class="device-bezel">
+                <div class="device-screen capture-screen home-screen">
+                  <img
+                    class="screen-capture"
+                    src="./assets/screenshots/home-main.webp"
+                    alt=""
+                    loading="eager"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="hero-stage-caption">
+          <span class="caption-mark" aria-hidden="true">&#x2199;</span>
+          <span>Beta build, May 2026 &mdash; UI is subject to change.</span>
+        </p>
+      </section>
+
+      <!-- =========================== MANIFESTO + EXAMPLES =========================== -->
+      <section class="manifesto" id="why" aria-labelledby="manifesto-title">
+        <p class="eyebrow"><i aria-hidden="true"></i><span>What this is</span></p>
+        <h2 id="manifesto-title" class="manifesto-headline">
+          <span class="m-line">Caring about people</span>
+          <span class="m-line">is not the same as <em>managing</em> them.</span>
+        </h2>
+        <p class="manifesto-lede">
+          Not a CRM. Not productivity software. Not a social network. Just a quiet place
+          for the small details that make people feel remembered &mdash; the kind of things
+          you used to keep in a notebook, or your head, and were always afraid of losing.
+        </p>
+
+        <div class="examples-board" aria-hidden="false">
+          <article class="memory paper-card card-tilt-a">
+            <span class="card-tag">Glint</span>
+            <strong>Mum was nervous about the board presentation.</strong>
+            <span class="card-meta">Tue, 6 May &middot; on the phone</span>
+          </article>
+          <article class="memory paper-card card-tilt-b card-sage">
+            <span class="card-tag">Glint</span>
+            <strong>James loves old film cameras. Saving for a Pentax K1000.</strong>
+            <span class="card-meta">Sun &middot; pub, after dinner</span>
+          </article>
+          <article class="memory paper-card card-tilt-c card-rose">
+            <span class="card-tag">Birthday</span>
+            <strong>Hannah, 18 May.</strong>
+            <span class="card-meta">Loves anything with bergamot</span>
+          </article>
+          <article class="memory paper-card card-tilt-d">
+            <span class="card-tag">Moment</span>
+            <strong>Sunday pasta night. She laughed until she cried.</strong>
+            <span class="card-meta">14 July &middot; the kitchen table</span>
+          </article>
+          <article class="memory paper-card card-tilt-e card-lavender">
+            <span class="card-tag">Quiet</span>
+            <strong>Dad has been quiet for 30 days. The knee, the garden.</strong>
+            <span class="card-meta">Maybe a phone call this weekend</span>
+          </article>
+          <article class="memory paper-card card-tilt-f card-sage">
+            <span class="card-tag">Gift idea</span>
+            <strong>Vintage camera strap for James.</strong>
+            <span class="card-meta">Saw one at the market in Hackney</span>
+          </article>
+          <span class="memory paper-card paper-card-blank card-tilt-g" aria-hidden="true">
+            <em>your next little thing</em>
+          </span>
+        </div>
+      </section>
+
+      <!-- =========================== PINNED PRODUCT STORY =========================== -->
+      <section class="story" id="story" data-orbit-section aria-labelledby="story-title">
+        <div class="story-prologue">
+          <p class="eyebrow eyebrow-light"><i aria-hidden="true"></i><span>How it works</span></p>
+          <h2 id="story-title">
+            Four quiet ideas, one private app.
+          </h2>
+          <p class="story-disclaimer">
+            Beta captures shown with placeholder-only data. UI is subject to change
+            as Little Things finds its final shape.
+          </p>
+        </div>
+
+        <div class="story-track" data-orbit-scroll>
+          <div class="story-pin">
+            <aside class="story-side" aria-live="polite">
+              <span class="story-count" data-orbit-count>01 / 04</span>
+              <h3 class="story-heading" data-orbit-heading>Start with someone who matters.</h3>
+              <p class="story-body" data-orbit-copy>
+                Create a private profile for the people you want to remember
+                with more care.
+              </p>
+              <div class="story-progress" aria-hidden="true">
+                <span data-orbit-progress></span>
+              </div>
+              <nav class="story-steps" aria-label="Product demo steps">
+                <button type="button" class="is-active" data-orbit-nav="0">
+                  <span class="step-num">01</span>
+                  <span class="step-label">People</span>
+                </button>
+                <button type="button" data-orbit-nav="1">
+                  <span class="step-num">02</span>
+                  <span class="step-label">Glints</span>
+                </button>
+                <button type="button" data-orbit-nav="2">
+                  <span class="step-num">03</span>
+                  <span class="step-label">Your space</span>
+                </button>
+                <button type="button" data-orbit-nav="3">
+                  <span class="step-num">04</span>
+                  <span class="step-label">Privacy</span>
+                </button>
+              </nav>
+            </aside>
+
+            <div class="story-stage" data-orbit-stage aria-label="Animated Little Things product story">
+              <div class="story-rings" aria-hidden="true">
+                <span class="ring ring-a"></span>
+                <span class="ring ring-b"></span>
+                <span class="ring ring-c"></span>
+              </div>
+              <article class="story-memory" data-orbit-note="0"><span>Profile</span><strong>Someone you care about</strong></article>
+              <article class="story-memory" data-orbit-note="1"><span>Context</span><strong>Something they mentioned</strong></article>
+              <article class="story-memory" data-orbit-note="2"><span>Moment</span><strong>A day worth remembering</strong></article>
+              <article class="story-memory" data-orbit-note="3"><span>Circle</span><strong>Your own words</strong></article>
+
+              <div class="device story-device capture-device" data-orbit-device aria-hidden="true">
+                <div class="device-bezel">
+                  <div class="device-screen story-screen capture-screen">
+                    <div class="status-bar"><span>9:41</span><span data-orbit-topline>People</span></div>
+                    <div class="story-screen-content" data-orbit-screen>
+                      <img class="screen-capture" src="./assets/screenshots/start-with-someone.jpg" alt="" loading="lazy" decoding="async" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================== PRIVACY MANIFESTO =========================== -->
+      <section class="privacy" id="privacy" aria-labelledby="privacy-title">
+        <div class="privacy-inner">
+          <p class="eyebrow eyebrow-light"><i aria-hidden="true"></i><span>Privacy</span></p>
+          <h2 id="privacy-title" class="privacy-headline">
+            <span>Private by default.</span>
+            <span><em>Plain</em> about the limits.</span>
+          </h2>
+          <p class="privacy-lede">
+            Your relationship notes live on your device. Little Things does not
+            keep a cloud copy of your people, notes, glints, or moments. Beta
+            feedback only leaves the device when you choose to send it.
+          </p>
+
+          <div class="privacy-grid">
+            <article class="promise">
+              <span class="promise-num">01</span>
+              <h3>No account.</h3>
+              <p>Use Little Things without sign-in. There is no profile to recover, because there is no profile to begin with.</p>
+            </article>
+            <article class="promise">
+              <span class="promise-num">02</span>
+              <h3>No Little Things cloud.</h3>
+              <p>People, notes, moments, and nudges are stored locally. We don&rsquo;t back them up, sync them, or read them.</p>
+            </article>
+            <article class="promise">
+              <span class="promise-num">03</span>
+              <h3>Local reminders.</h3>
+              <p>Notifications are scheduled by your device, not pushed from a server. They work offline.</p>
+            </article>
+            <article class="promise">
+              <span class="promise-num">04</span>
+              <h3>Plain export.</h3>
+              <p>You can export everything as a JSON file. Treat it like a sensitive notebook &mdash; it is not encrypted.</p>
+            </article>
+          </div>
+
+          <div class="privacy-caveat">
+            <strong>What we are honest about.</strong>
+            <p>
+              App lock is a screen barrier for casual privacy, not database
+              encryption. Beta feedback is a separate, opt-in channel: when you
+              tap send, the words you typed and limited app context leave the
+              device so the team can review it. Both are spelled out in the
+              <a href="./docs/privacy.html">privacy policy</a> and
+              <a href="./docs/data-promises.html">data promises</a>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================== BETA INVITATION =========================== -->
+      <section class="beta" id="beta" aria-labelledby="beta-title">
+        <div class="beta-card">
+          <div class="beta-card-inner">
+            <span class="beta-stamp" aria-hidden="true">
+              <span class="stamp-line">Private</span>
+              <span class="stamp-dot">&middot;</span>
+              <span class="stamp-line">Beta</span>
+              <span class="stamp-dot">&middot;</span>
+              <span class="stamp-line">2026</span>
+            </span>
+            <p class="eyebrow"><i aria-hidden="true"></i><span>Early access</span></p>
+            <h2 id="beta-title">
+              Try it with one small circle.
+            </h2>
+            <p class="beta-lede">
+              The beta is for people who will use Little Things gently, notice
+              what feels helpful, and tell us where it should stay small.
+            </p>
+            <ul class="beta-promises" aria-label="Beta expectations">
+              <li>Small tester group</li>
+              <li>Plain feedback</li>
+              <li>Privacy checked first</li>
+            </ul>
+            <form class="beta-form" id="beta-form" novalidate>
+              <div class="beta-name-grid">
+                <label>
+                  <span>First name</span>
+                  <input id="beta-first-name" name="first_name" type="text" autocomplete="given-name" placeholder="Jane" required />
+                </label>
+                <label>
+                  <span>Last name</span>
+                  <input id="beta-last-name" name="last_name" type="text" autocomplete="family-name" placeholder="Singh" required />
+                </label>
+              </div>
+              <label>
+                <span>Email for beta access</span>
+                <input id="beta-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+              </label>
+              <div class="beta-name-grid">
+                <label>
+                  <span>Platform</span>
+                  <select id="beta-platform" name="platform" required>
+                    <option value="">Choose one</option>
+                    <option value="iphone">iPhone</option>
+                    <option value="android">Android</option>
+                    <option value="not_sure">Not sure / just interested</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Why it fits</span>
+                  <select id="beta-fit-reason" name="fit_reason">
+                    <option value="">Optional</option>
+                    <option value="remember_details">I remember details about people</option>
+                    <option value="private_notes">I keep private notes</option>
+                    <option value="forget_but_care">I forget but care</option>
+                    <option value="privacy">I care about privacy</option>
+                    <option value="other">Other</option>
+                  </select>
+                </label>
+              </div>
+              <label>
+                <span>Anything useful to know?</span>
+                <textarea id="beta-note" name="note" rows="3" maxlength="500" placeholder="Optional. A sentence or two is enough."></textarea>
+              </label>
+              <label class="beta-consent">
+                <input id="beta-consent" name="consent_to_contact" type="checkbox" required />
+                <span>You can contact me about the Little Things beta.</span>
+              </label>
+              <label class="beta-honeypot" aria-hidden="true" tabindex="-1">
+                <span>Company</span>
+                <input id="beta-company" name="company" type="text" autocomplete="off" tabindex="-1" />
+              </label>
+              <button class="primary-action magnetic beta-submit" type="submit">
+                <span>Register interest</span>
+                <i aria-hidden="true">&nearr;</i>
+              </button>
+              <p id="beta-message" class="form-message" role="status">
+                Small group, human-reviewed. We will email if a spot opens.
+              </p>
+            </form>
+          </div>
+          <div class="beta-card-aside">
+            <span class="aside-eyebrow" aria-hidden="true">In writing</span>
+            <ul class="aside-list">
+              <li><span aria-hidden="true">&middot;</span>No account, no cloud, no tracking.</li>
+              <li><span aria-hidden="true">&middot;</span>Your relationship notes never leave the device.</li>
+              <li><span aria-hidden="true">&middot;</span>Beta feedback only sends when you tap send.</li>
+              <li><span aria-hidden="true">&middot;</span>You can export everything, anytime, as plain JSON.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================== DOCS + FAQ =========================== -->
+      <section class="docs" id="docs" aria-labelledby="docs-title">
+        <header class="section-head section-head-split">
+          <div>
+            <p class="eyebrow"><i aria-hidden="true"></i><span>Read before you join</span></p>
+            <h2 id="docs-title">
+              The plain answers.
+            </h2>
+          </div>
+          <p class="section-lede section-lede-right">
+            We wrote these without lawyers in the room first. Then ran them past
+            lawyers. They are short on purpose.
+          </p>
+        </header>
+
+        <div class="docs-list">
+          <a class="doc-row" href="./docs/privacy.html">
+            <span class="doc-num">01</span>
+            <div class="doc-meta">
+              <span class="doc-tag">Privacy</span>
+              <strong>What stays local, what can leave, and why.</strong>
+              <p>How notes, glints, and moments are stored. What beta feedback contains when you send it.</p>
+            </div>
+            <span class="doc-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="doc-row" href="./docs/data-promises.html">
+            <span class="doc-num">02</span>
+            <div class="doc-meta">
+              <span class="doc-tag">Data promises</span>
+              <strong>The product behavior we are committing to.</strong>
+              <p>The handful of guarantees we are willing to put in writing for the beta.</p>
+            </div>
+            <span class="doc-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="doc-row" href="./docs/terms.html">
+            <span class="doc-num">03</span>
+            <div class="doc-meta">
+              <span class="doc-tag">Terms</span>
+              <strong>Plain terms for a personal beta app.</strong>
+              <p>What you can expect, what we will not do, and what changes if Little Things ever leaves beta.</p>
+            </div>
+            <span class="doc-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="doc-row" href="./docs/beta-faq.html">
+            <span class="doc-num">04</span>
+            <div class="doc-meta">
+              <span class="doc-tag">Beta FAQ</span>
+              <strong>Answers for early testers.</strong>
+              <p>What to expect from invites, feedback, support, and the path out of beta.</p>
+            </div>
+            <span class="doc-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+
+        <div class="faq">
+          <div class="faq-head">
+            <p class="quiet-line"><i aria-hidden="true"></i><span>Still wondering</span></p>
+            <h3>Four questions we still get asked.</h3>
+          </div>
+          <div class="faq-list">
+            <details>
+              <summary>Who is Little Things actually for?<i aria-hidden="true">+</i></summary>
+              <p>People who already care about remembering small details about friends, family, partners, or a close circle &mdash; and want a quiet place to keep them. Personal memory software, not a work tool.</p>
+            </details>
+            <details>
+              <summary>How does the beta work?<i aria-hidden="true">+</i></summary>
+              <p>Register interest, get an invite when a spot opens, try it with a small circle, and send feedback when something feels useful, unclear, or too much. The tester group is intentionally small.</p>
+            </details>
+            <details>
+              <summary>What does export actually give me?<i aria-hidden="true">+</i></summary>
+              <p>A point-in-time JSON file with everything you&rsquo;ve added. It is plain text &mdash; not sync, not restore, not encrypted. Treat it like a sensitive notebook and keep it somewhere safe.</p>
+            </details>
+            <details>
+              <summary>Is this a CRM?<i aria-hidden="true">+</i></summary>
+              <p>No. No pipelines, no contact scores, no follow-up quotas. Little Things is shaped for personal memory, not for managing relationships like accounts.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand-block">
+        <a class="footer-brand" href="#top">
+          <img src="./assets/icon.png" alt="" aria-hidden="true" />
+          <span>Little Things</span>
+        </a>
+        <p>A private place to remember the little things about the people who matter.</p>
+      </div>
+      <div class="footer-links">
+        <nav aria-label="Footer links">
+          <a href="./docs/privacy.html">Privacy</a>
+          <a href="./docs/terms.html">Terms</a>
+          <a href="./docs/data-promises.html">Data</a>
+          <a href="./docs/beta-faq.html">Beta FAQ</a>
+        </nav>
+        <a class="footer-back" href="#top">
+          <span>Back to top</span>
+          <i aria-hidden="true">&uarr;</i>
+        </a>
+      </div>
+      <p class="footer-coda">
+        <span>Made quietly. &copy; Little Things, 2026.</span>
+        <span class="footer-disclaimer">All app captures on this site are from the current beta build &mdash; UI is subject to change.</span>
+      </p>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
