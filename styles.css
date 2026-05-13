@@ -2472,6 +2472,10 @@ button.primary-action i {
   line-height: 1.55;
 }
 
+.privacy-lede + .privacy-lede {
+  margin-top: 0.9rem;
+}
+
 .privacy-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -2534,11 +2538,19 @@ button.primary-action i {
   color: var(--paper-soft);
 }
 
-.privacy-caveat p {
+.privacy-caveat-copy {
+  max-width: 38rem;
+}
+
+.privacy-caveat-copy p {
   max-width: 38rem;
   color: rgba(251, 244, 231, 0.72);
   font-size: 1rem;
   line-height: 1.6;
+}
+
+.privacy-caveat-copy p + p {
+  margin-top: 0.9rem;
 }
 
 .privacy-caveat a {
