@@ -6,53 +6,53 @@ const orbitSteps = [
   {
     key: "people",
     topline: "People",
-    heading: "Start with someone you care about.",
-    body: "Add one person when you are ready, or skip until the app earns a place in your routine.",
+    heading: "Start with the people who matter.",
+    body: "Keep a private list of the people you want to remember with more care.",
     screen: `
       <img class="screen-capture" src="./assets/screenshots/start-with-someone.webp" alt="" loading="lazy" decoding="async" />
     `,
     notes: [
-      { label: "First step", text: "Add someone", x: "-18rem", y: "-13rem", rotate: "-8deg", bg: "#fdfcf8" },
-      { label: "Choice", text: "Manual or contacts", x: "17rem", y: "-12rem", rotate: "6deg", bg: "#d4dfc7" },
-      { label: "Pace", text: "Skip until ready", x: "-19rem", y: "12rem", rotate: "5deg", bg: "#ebccbc" },
-      { label: "Care", text: "Begin with one person", x: "18rem", y: "12rem", rotate: "-5deg", bg: "#d6cee0" },
+      { label: "Private list", text: "People you care about", x: "-18rem", y: "-13rem", rotate: "-8deg", bg: "#fdfcf8" },
+      { label: "Add someone", text: "Manual or contacts", x: "17rem", y: "-12rem", rotate: "6deg", bg: "#d4dfc7" },
+      { label: "Start small", text: "One person is enough", x: "-19rem", y: "12rem", rotate: "5deg", bg: "#ebccbc" },
+      { label: "Close circle", text: "Friends and family", x: "18rem", y: "12rem", rotate: "-5deg", bg: "#d6cee0" },
     ],
   },
   {
     key: "glints",
-    topline: "Glints",
-    heading: "Name the little things you notice.",
-    body: "Glints stay simple: support, observations, moments, interests, and gift ideas.",
+    topline: "Details",
+    heading: "Save the details you want to remember.",
+    body: "Keep gift ideas, preferences, stories, important dates, and things they are going through.",
     screen: `
       <img class="screen-capture" src="./assets/screenshots/what-you-notice.webp" alt="" loading="lazy" decoding="async" />
     `,
     notes: [
-      { label: "Support", text: "Something to follow up", x: "-19rem", y: "-9rem", rotate: "-3deg", bg: "#ebccbc" },
-      { label: "Observation", text: "Something you noticed", x: "18rem", y: "-14rem", rotate: "9deg", bg: "#d4dfc7" },
-      { label: "Gift idea", text: "Something to remember", x: "-16rem", y: "14rem", rotate: "8deg", bg: "#d6cee0" },
-      { label: "Moment", text: "Something that mattered", x: "19rem", y: "10rem", rotate: "-8deg", bg: "#fdfcf8" },
+      { label: "Before a call", text: "Ask how it went", x: "-19rem", y: "-9rem", rotate: "-3deg", bg: "#ebccbc" },
+      { label: "Preference", text: "Bergamot, not lavender", x: "18rem", y: "-14rem", rotate: "9deg", bg: "#d4dfc7" },
+      { label: "Gift idea", text: "Vintage camera strap", x: "-16rem", y: "14rem", rotate: "8deg", bg: "#d6cee0" },
+      { label: "Important date", text: "Interview on Thursday", x: "19rem", y: "10rem", rotate: "-8deg", bg: "#fdfcf8" },
     ],
   },
   {
     key: "your-space",
-    topline: "Your space",
-    heading: "See care become a quiet pattern.",
-    body: "Your own space shows what you have been noticing without turning people into a dashboard.",
+    topline: "Reminders",
+    heading: "Set gentle nudges for moments that matter.",
+    body: "Use local reminders for birthdays, check-ins, appointments, or times when a message would matter.",
     screen: `
       <img class="screen-capture" src="./assets/screenshots/your-space.webp" alt="" loading="lazy" decoding="async" />
     `,
     notes: [
-      { label: "Profile", text: "Your Name", x: "-20rem", y: "-12rem", rotate: "6deg", bg: "#fdfcf8" },
-      { label: "Glints", text: "A small trail of notes", x: "16rem", y: "-10rem", rotate: "-7deg", bg: "#d6cee0" },
-      { label: "Activity", text: "Week by week", x: "-18rem", y: "11rem", rotate: "-8deg", bg: "#d4dfc7" },
-      { label: "Chronicles", text: "The longer memories", x: "19rem", y: "13rem", rotate: "5deg", bg: "#ebccbc" },
+      { label: "Birthday", text: "Send a message", x: "-20rem", y: "-12rem", rotate: "6deg", bg: "#fdfcf8" },
+      { label: "Check-in", text: "Ask about the knee", x: "16rem", y: "-10rem", rotate: "-7deg", bg: "#d6cee0" },
+      { label: "Appointment", text: "Wish them luck", x: "-18rem", y: "11rem", rotate: "-8deg", bg: "#d4dfc7" },
+      { label: "Later", text: "When it matters", x: "19rem", y: "13rem", rotate: "5deg", bg: "#ebccbc" },
     ],
   },
   {
     key: "privacy",
     topline: "Privacy",
-    heading: "Keep the notebook on your device.",
-    body: "Little Things puts a local screen barrier in front of your private space, with authentication handled by your device.",
+    heading: "Keep your notes on your device.",
+    body: "Your notes stay on your device. No account. No Little Things cloud.",
     screen: `
       <img class="screen-capture" src="./assets/screenshots/app-lock.jpg" alt="" loading="lazy" decoding="async" />
     `,
@@ -174,6 +174,7 @@ if (tiltStage && !reducedMotion.matches) {
 const orbitSection = document.querySelector("[data-orbit-section]");
 if (orbitSection) {
   const orbitScroll = orbitSection.querySelector("[data-orbit-scroll]");
+  const orbitStage = orbitSection.querySelector("[data-orbit-stage]");
   const orbitScreen = orbitSection.querySelector("[data-orbit-screen]");
   const orbitTopline = orbitSection.querySelector("[data-orbit-topline]");
   const orbitHeading = orbitSection.querySelector("[data-orbit-heading]");
@@ -189,6 +190,37 @@ if (orbitSection) {
   let textAnimations = [];
 
   const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+  const cssLengthToPx = (value) => {
+    if (typeof value !== "string") return Number(value) || 0;
+    const amount = parseFloat(value);
+    if (!Number.isFinite(amount)) return 0;
+    if (value.trim().endsWith("rem")) {
+      const rootSize = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      return amount * rootSize;
+    }
+    return amount;
+  };
+
+  const safeNoteOffset = (noteEl, axis, value) => {
+    if (!orbitStage) return value;
+    const stageRect = orbitStage.getBoundingClientRect();
+    const noteRect = noteEl.getBoundingClientRect();
+    const desired = cssLengthToPx(value);
+    const inset = 16;
+
+    if (axis === "x") {
+      const center = stageRect.left + stageRect.width / 2;
+      const half = noteRect.width / 2;
+      const min = inset + half - center;
+      const max = window.innerWidth - inset - half - center;
+      return `${clamp(desired, min, max)}px`;
+    }
+
+    const half = noteRect.height / 2;
+    const min = inset + half - stageRect.height / 2;
+    const max = stageRect.height - inset - half - stageRect.height / 2;
+    return `${clamp(desired, min, max)}px`;
+  };
 
   const cancelTextAnimations = () => {
     textAnimations.forEach((anim) => anim.cancel());
@@ -253,8 +285,8 @@ if (orbitSection) {
       const note = step.notes[idx];
       if (!note) return;
       noteEl.innerHTML = `<span>${note.label}</span><strong>${note.text}</strong>`;
-      noteEl.style.setProperty("--note-x", note.x);
-      noteEl.style.setProperty("--note-y", note.y);
+      noteEl.style.setProperty("--note-x", safeNoteOffset(noteEl, "x", note.x));
+      noteEl.style.setProperty("--note-y", safeNoteOffset(noteEl, "y", note.y));
       noteEl.style.setProperty("--note-rotate", note.rotate);
       noteEl.style.setProperty("--note-bg", note.bg);
       noteEl.style.setProperty("--note-opacity", "1");
@@ -284,15 +316,35 @@ if (orbitSection) {
     orbitFrame = requestAnimationFrame(updateFromScroll);
   };
 
+  const stepProgress = (index) => {
+    if (orbitSteps.length <= 1) return 0;
+    return clamp(index / (orbitSteps.length - 1), 0, 1);
+  };
+
+  const syncScrollToStep = (index) => {
+    if (!orbitScroll || compactView.matches || reducedMotion.matches) return;
+    const rect = orbitScroll.getBoundingClientRect();
+    const available = Math.max(1, rect.height - window.innerHeight);
+    const targetY = window.scrollY + rect.top + available * stepProgress(index);
+    const maxY = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    const html = document.documentElement;
+    const previousScrollBehavior = html.style.scrollBehavior;
+
+    html.style.scrollBehavior = "auto";
+    window.scrollTo({
+      top: clamp(targetY, 0, maxY),
+      behavior: "auto",
+    });
+    html.style.scrollBehavior = previousScrollBehavior;
+  };
+
   const select = (index) => {
     const target = clamp(index, 0, orbitSteps.length - 1);
     if (orbitProgress) {
-      orbitProgress.style.setProperty(
-        "--orbit-progress",
-        String(target / (orbitSteps.length - 1)),
-      );
+      orbitProgress.style.setProperty("--orbit-progress", String(stepProgress(target)));
     }
     renderStep(target, { force: true });
+    syncScrollToStep(target);
   };
 
   orbitNavItems.forEach((item) => {
@@ -310,7 +362,10 @@ if (orbitSection) {
 
   orbitObserver.observe(orbitSection);
   window.addEventListener("scroll", schedule, { passive: true });
-  window.addEventListener("resize", schedule);
+  window.addEventListener("resize", () => {
+    renderStep(activeIndex < 0 ? 0 : activeIndex, { force: true });
+    schedule();
+  });
   renderStep(0, { force: true });
 }
 

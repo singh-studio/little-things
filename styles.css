@@ -3331,8 +3331,19 @@ button.primary-action i {
   }
 
   .hero-stage {
+    width: min(100%, 46rem);
+    margin: 0 auto;
     min-height: 40rem;
   }
+
+  .orbit-card {
+    width: clamp(11.5rem, 22vw, 13rem);
+  }
+
+  .orbit-card-1 { top: 5%; right: 1.5rem; }
+  .orbit-card-2 { top: 26%; left: 1.5rem; }
+  .orbit-card-3 { bottom: 8%; right: 1.5rem; }
+  .orbit-card-4 { bottom: 1%; left: 1.5rem; }
 
   .examples-board {
     grid-template-columns: repeat(8, 1fr);
@@ -3380,10 +3391,10 @@ button.primary-action i {
     width: 11.5rem;
   }
 
-  .story-memory[data-orbit-note="0"] { --note-x: -14rem; --note-y: -13rem; }
-  .story-memory[data-orbit-note="1"] { --note-x: 14rem; --note-y: -12rem; }
-  .story-memory[data-orbit-note="2"] { --note-x: -15rem; --note-y: 12rem; }
-  .story-memory[data-orbit-note="3"] { --note-x: 15rem; --note-y: 12rem; }
+  .story-memory[data-orbit-note="0"] { --note-x: -10rem; --note-y: -13rem; }
+  .story-memory[data-orbit-note="1"] { --note-x: 10rem; --note-y: -12rem; }
+  .story-memory[data-orbit-note="2"] { --note-x: -10rem; --note-y: 12rem; }
+  .story-memory[data-orbit-note="3"] { --note-x: 10rem; --note-y: 12rem; }
 
   .docs .section-head-split {
     grid-template-columns: 1fr;
@@ -3439,6 +3450,7 @@ button.primary-action i {
   }
 
   .hero-stage {
+    width: min(100%, 36rem);
     min-height: 32rem;
   }
 
@@ -3470,7 +3482,7 @@ button.primary-action i {
   .stage-rings .ring-3 { display: none; }
 
   .orbit-card {
-    width: 11.4rem;
+    width: min(10.9rem, calc(50% - 1.2rem));
     padding: 0.78rem 0.85rem 0.9rem;
   }
 
@@ -3482,10 +3494,10 @@ button.primary-action i {
     font-size: 0.68rem;
   }
 
-  .orbit-card-1 { top: 4%; right: 0%; }
-  .orbit-card-2 { top: 18%; left: -2%; }
-  .orbit-card-3 { display: none; }
-  .orbit-card-4 { display: none; }
+  .orbit-card-1 { top: 3%; right: 1.2rem; }
+  .orbit-card-2 { top: 18%; left: 1.2rem; }
+  .orbit-card-3 { right: 1.2rem; bottom: 14%; }
+  .orbit-card-4 { left: 1.2rem; bottom: 1.2rem; }
 
   .hero-stage-caption {
     margin-top: 1rem;
@@ -3606,10 +3618,10 @@ button.primary-action i {
     font-size: 0.86rem;
   }
 
-  .story-memory[data-orbit-note="0"] { --note-x: -8.5rem; --note-y: -10.5rem; }
-  .story-memory[data-orbit-note="1"] { --note-x: 8.5rem; --note-y: -10rem; }
-  .story-memory[data-orbit-note="2"] { --note-x: -8.5rem; --note-y: 10rem; }
-  .story-memory[data-orbit-note="3"] { --note-x: 8.5rem; --note-y: 10rem; }
+  .story-memory[data-orbit-note="0"] { --note-x: -5rem; --note-y: -10.5rem; }
+  .story-memory[data-orbit-note="1"] { --note-x: 5rem; --note-y: -10rem; }
+  .story-memory[data-orbit-note="2"] { --note-x: -5rem; --note-y: 10rem; }
+  .story-memory[data-orbit-note="3"] { --note-x: 5rem; --note-y: 10rem; }
 
   .story-device {
     width: 14.5rem;
@@ -3718,6 +3730,7 @@ button.primary-action i {
 
 @media (max-width: 500px) {
   .hero-stage {
+    width: 100%;
     min-height: 28rem;
   }
 
@@ -3733,13 +3746,18 @@ button.primary-action i {
   .stage-rings .ring-1 { width: 14rem; height: 14rem; }
   .stage-rings .ring-2 { width: 19rem; height: 19rem; }
 
-  .orbit-card-1, .orbit-card-2 {
-    width: 9.5rem;
+  .orbit-card-1,
+  .orbit-card-2,
+  .orbit-card-3,
+  .orbit-card-4 {
+    width: clamp(8.4rem, 38vw, 9.5rem);
     padding: 0.7rem 0.78rem 0.8rem;
   }
 
-  .orbit-card-1 { top: -1%; right: -1%; }
-  .orbit-card-2 { top: 50%; left: -2%; }
+  .orbit-card-1 { top: 0.6rem; right: 1rem; }
+  .orbit-card-2 { top: 5.6rem; left: 1rem; }
+  .orbit-card-3 { right: 1rem; bottom: 5.8rem; }
+  .orbit-card-4 { left: 1rem; bottom: 0.6rem; }
 
   .orbit-card .card-meta {
     display: none;
