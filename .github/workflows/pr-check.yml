@@ -1,0 +1,29 @@
+name: Website PR Check
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Verify static website assets
+        run: |
+          test -f index.html
+          test -f script.js
+          test -f styles.css
+          test -f assets/screenshots/home-main.webp
+          test -f assets/screenshots/start-with-someone.webp
+          test -f assets/screenshots/what-you-notice.webp
+          test -f assets/screenshots/your-space.webp
+          test -f assets/screenshots/app-lock.jpg
+          node -e "const fs=require('fs'); const files=['index.html','script.js','styles.css']; const refs=new Set(); for (const f of files) { const s=fs.readFileSync(f,'utf8'); for (const m of s.matchAll(/(?:src|href)=['\"]([^'\"]+)['\"]/g)) refs.add(m[1]); for (const m of s.matchAll(/url\(['\"]?([^)'\"]+)['\"]?\)/g)) refs.add(m[1]); } const missing=[...refs].filter(r=>r.startsWith('./')&&!r.includes('#')).filter(r=>!fs.existsSync(r.replace(/^\.\//,''))); if (missing.length) { console.error(missing.join('\n')); process.exit(1); }"
