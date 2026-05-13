@@ -52,15 +52,15 @@ const orbitSteps = [
     key: "privacy",
     topline: "Privacy",
     heading: "Keep the notebook on your device.",
-    body: "People, glints, reminders, and moments live in the app's local notebook, with export as the manual backup path.",
+    body: "Little Things puts a local screen barrier in front of your private space, with authentication handled by your device.",
     screen: `
       <img class="screen-capture" src="./assets/screenshots/app-lock.jpg" alt="" loading="lazy" decoding="async" />
     `,
     notes: [
       { label: "No account", text: "Use it without sign-in", x: "-18rem", y: "-14rem", rotate: "-10deg", bg: "#d6cee0" },
       { label: "Local", text: "Stored on this device", x: "18rem", y: "-11rem", rotate: "5deg", bg: "#fdfcf8" },
-      { label: "Private details", text: "Kept in your notebook", x: "-20rem", y: "10rem", rotate: "4deg", bg: "#ebccbc" },
-      { label: "Export", text: "Manual backup when needed", x: "17rem", y: "14rem", rotate: "-6deg", bg: "#d4dfc7" },
+      { label: "Privacy lock", text: "A screen barrier", x: "-20rem", y: "10rem", rotate: "4deg", bg: "#ebccbc" },
+      { label: "Device handled", text: "No biometric data leaves", x: "17rem", y: "14rem", rotate: "-6deg", bg: "#d4dfc7" },
     ],
   },
 ];
