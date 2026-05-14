@@ -811,7 +811,7 @@ body.menu-open .back-to-top {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.05fr) minmax(28rem, 1fr);
   align-items: center;
   gap: clamp(2rem, 4vw, 4rem);
   min-height: clamp(38rem, 70vh, 50rem);
@@ -887,14 +887,12 @@ body.menu-open .back-to-top {
 
 .hero-stage {
   position: relative;
-  justify-self: end;
   display: grid;
   place-items: center;
-  width: min(100%, 38rem);
   min-height: 44rem;
   max-width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: visible;
   isolation: isolate;
   user-select: none;
   -webkit-user-select: none;
@@ -998,15 +996,15 @@ body.menu-open .back-to-top {
 .orbit-card {
   position: absolute;
   z-index: 6;
-  width: clamp(7.2rem, 7.2vw, 8.6rem);
-  padding: 0.6rem 0.66rem 0.66rem;
+  width: clamp(10.2rem, 10vw, 11.2rem);
+  padding: 0.95rem 1rem 1.05rem;
   background: var(--paper-soft);
   border: 1px solid rgba(26, 25, 22, 0.1);
   border-radius: 0.85rem;
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.8) inset,
-    0 14px 28px rgba(60, 40, 20, 0.15),
-    0 3px 6px rgba(60, 40, 20, 0.06);
+    0 18px 38px rgba(60, 40, 20, 0.18),
+    0 3px 6px rgba(60, 40, 20, 0.08);
   animation: drift 13s ease-in-out infinite;
   animation-delay: var(--drift-delay, 0s);
   pointer-events: none;
@@ -1017,12 +1015,12 @@ body.menu-open .back-to-top {
 .memory .card-tag,
 .nudge-card .card-tag {
   display: inline-block;
-  margin-bottom: 0.36rem;
-  padding: 0.14rem 0.38rem;
+  margin-bottom: 0.55rem;
+  padding: 0.18rem 0.5rem;
   color: var(--sage-deep);
   background: var(--sage-soft);
   border-radius: 0.3rem;
-  font-size: 0.5rem;
+  font-size: 0.66rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1052,9 +1050,9 @@ body.menu-open .back-to-top {
 .memory strong {
   display: block;
   font-family: var(--serif);
-  font-size: 0.76rem;
+  font-size: 1.04rem;
   font-weight: 540;
-  line-height: 1.16;
+  line-height: 1.18;
   color: var(--ink);
   letter-spacing: -0.012em;
 }
@@ -1069,35 +1067,31 @@ body.menu-open .back-to-top {
   letter-spacing: 0.01em;
 }
 
-.orbit-card .card-meta {
-  display: none;
-}
-
 .orbit-card-1 {
-  top: 4.6rem;
-  right: 0.25rem;
-  --ox: 0.06rem; --oy: 0; --rot: 4deg;
+  top: 6%;
+  right: -1.35rem;
+  --ox: 0.12rem; --oy: 0; --rot: 4deg;
   background: var(--paper-soft);
 }
 
 .orbit-card-2 {
-  top: 13rem;
-  left: 0.15rem;
-  --ox: -0.06rem; --oy: 0; --rot: -6deg;
+  top: 35%;
+  left: -1.65rem;
+  --ox: -0.12rem; --oy: 0; --rot: -6deg;
   background: #eef3e5;
 }
 
 .orbit-card-3 {
-  right: 0.25rem;
-  bottom: 8.1rem;
-  --ox: 0.06rem; --oy: 0; --rot: -3deg;
+  bottom: 14%;
+  right: -1.75rem;
+  --ox: 0.12rem; --oy: 0; --rot: -3deg;
   background: var(--rose);
 }
 
 .orbit-card-4 {
-  left: 0.2rem;
-  bottom: 3.2rem;
-  --ox: -0.06rem; --oy: 0; --rot: 5deg;
+  bottom: 1.5%;
+  left: -1.35rem;
+  --ox: -0.12rem; --oy: 0; --rot: 5deg;
   background: var(--lavender);
 }
 
@@ -1144,20 +1138,16 @@ body.menu-open .back-to-top {
 
 .hero-device {
   z-index: 5;
-  width: clamp(15.8rem, 21vw, 17.8rem);
   transform: translate3d(calc(var(--tilt-x, 0) * 0.4rem), calc(var(--tilt-y, 0) * 0.4rem), 0) rotate(-1.2deg);
   transition: transform 540ms var(--ease-heavy);
 }
 
 .hero-device.capture-device .device-bezel {
-  padding: 0.22rem;
-  background:
-    linear-gradient(160deg, #302f2a 0%, #171610 62%, #0d0c0a 100%);
-  border: 1px solid rgba(255, 250, 242, 0.18);
-  border-radius: 2.35rem;
-  box-shadow:
-    0 1px 1px rgba(255, 255, 255, 0.2) inset,
-    0 0 0 1px rgba(0, 0, 0, 0.42);
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 2.75rem;
+  box-shadow: none;
 }
 
 /* ──────────────  Device screen — mirrors the real app's lightPalette  ────────────── */
@@ -1186,9 +1176,11 @@ body.menu-open .back-to-top {
 }
 
 .hero-device.capture-device .device-screen.capture-screen {
-  border: 0;
-  border-radius: 2.12rem;
-  box-shadow: none;
+  border: 1px solid rgba(26, 25, 22, 0.11);
+  border-radius: 2.55rem;
+  box-shadow:
+    0 0 0 0.42rem rgba(26, 25, 22, 0.035),
+    0 1px 0 rgba(255, 255, 255, 0.72) inset;
 }
 
 .screen-capture {
@@ -3609,19 +3601,19 @@ body.menu-open .back-to-top {
   }
 
   .hero-stage {
-    width: min(100%, 38rem);
+    width: min(100%, 50rem);
     margin: 0 auto;
     min-height: 40rem;
   }
 
   .orbit-card {
-    width: 8rem;
+    width: 10.5rem;
   }
 
-  .orbit-card-1 { top: 3.8rem; right: 0.1rem; --ox: 0.05rem; }
-  .orbit-card-2 { top: 11.4rem; left: 0.05rem; --ox: -0.05rem; }
-  .orbit-card-3 { bottom: 7.1rem; right: 0.1rem; --ox: 0.05rem; }
-  .orbit-card-4 { bottom: 2.4rem; left: 0.05rem; --ox: -0.05rem; }
+  .orbit-card-1 { top: 7%; right: -0.85rem; --ox: 0.1rem; }
+  .orbit-card-2 { top: 31%; left: -1rem; --ox: -0.1rem; }
+  .orbit-card-3 { bottom: 12%; right: -1rem; --ox: 0.1rem; }
+  .orbit-card-4 { bottom: 1%; left: -0.85rem; --ox: -0.1rem; }
 
   .examples-board {
     grid-template-columns: repeat(8, 1fr);
@@ -3744,10 +3736,6 @@ body.menu-open .back-to-top {
     width: 16.5rem;
   }
 
-  .hero-device {
-    width: 15.2rem;
-  }
-
   .device-bezel {
     border-radius: 2.4rem;
   }
@@ -3772,22 +3760,22 @@ body.menu-open .back-to-top {
   .stage-rings .ring-3 { display: none; }
 
   .orbit-card {
-    width: min(6.5rem, calc(50% - 1.7rem));
-    padding: 0.54rem 0.58rem 0.6rem;
+    width: min(8.1rem, calc(50% - 1.6rem));
+    padding: 0.72rem 0.78rem 0.82rem;
   }
 
   .orbit-card strong {
-    font-size: 0.66rem;
+    font-size: 0.86rem;
   }
 
   .orbit-card .card-meta {
     font-size: 0.64rem;
   }
 
-  .orbit-card-1 { top: 2.2rem; right: 0; --ox: 0.04rem; }
-  .orbit-card-2 { top: 8rem; left: 0; --ox: -0.04rem; }
-  .orbit-card-3 { right: 0; bottom: 6.4rem; --ox: 0.04rem; }
-  .orbit-card-4 { left: 0; bottom: 1.6rem; --ox: -0.04rem; }
+  .orbit-card-1 { top: 8%; right: -0.85rem; --ox: 0.06rem; }
+  .orbit-card-2 { top: 27%; left: -0.85rem; --ox: -0.06rem; }
+  .orbit-card-3 { right: -0.9rem; bottom: 16%; --ox: 0.06rem; }
+  .orbit-card-4 { left: -0.85rem; bottom: 2rem; --ox: -0.06rem; }
 
   .hero-stage-caption {
     margin-top: 1rem;
@@ -4041,10 +4029,6 @@ body.menu-open .back-to-top {
     width: 14.4rem;
   }
 
-  .hero-device {
-    width: 12.8rem;
-  }
-
   .device-screen {
     min-height: 28rem;
     padding: 2.2rem 0.7rem 4rem;
@@ -4057,22 +4041,22 @@ body.menu-open .back-to-top {
   .orbit-card-2,
   .orbit-card-3,
   .orbit-card-4 {
-    width: clamp(3.8rem, 17vw, 4.35rem);
-    padding: 0.42rem 0.46rem 0.48rem;
+    width: clamp(4.4rem, 19vw, 5rem);
+    padding: 0.58rem 0.64rem 0.66rem;
     animation: none;
   }
 
-  .orbit-card-1 { top: 1.1rem; right: 0; --ox: 0; }
-  .orbit-card-2 { top: 4.9rem; left: 0; --ox: 0; }
-  .orbit-card-3 { right: 0; bottom: 4.6rem; --ox: 0; }
-  .orbit-card-4 { left: 0; bottom: 0.7rem; --ox: 0; }
+  .orbit-card-1 { top: 1.2rem; right: -0.9rem; --ox: 0; }
+  .orbit-card-2 { top: 5.8rem; left: -0.9rem; --ox: 0; }
+  .orbit-card-3 { right: -0.95rem; bottom: 5rem; --ox: 0; }
+  .orbit-card-4 { left: -0.9rem; bottom: 0.7rem; --ox: 0; }
 
   .orbit-card .card-meta {
     display: none;
   }
 
   .orbit-card strong {
-    font-size: 0.52rem;
+    font-size: 0.68rem;
   }
 
   .orbit-card .card-tag {
