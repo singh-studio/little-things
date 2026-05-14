@@ -267,6 +267,8 @@ if (orbitSection) {
   const orbitNavItems = Array.from(orbitSection.querySelectorAll("[data-orbit-nav]"));
   let activeIndex = -1;
   let orbitFrame = 0;
+  let storyPinned = false;
+  let lastStoryViewportWidth = window.innerWidth;
   let screenAnimation = null;
   let textAnimations = [];
 
@@ -274,7 +276,10 @@ if (orbitSection) {
   const canPinStory = () => !compactView.matches && !reducedMotion.matches;
   const syncStoryMode = () => {
     const shouldPin = canPinStory();
-    orbitSection.classList.toggle("is-pinned-story", shouldPin);
+    if (storyPinned !== shouldPin) {
+      orbitSection.classList.toggle("is-pinned-story", shouldPin);
+    }
+    storyPinned = shouldPin;
     return shouldPin;
   };
 
@@ -336,8 +341,28 @@ if (orbitSection) {
     });
   };
 
+  const renderOrbitNotes = (step, opts = {}) => {
+    orbitNotes.forEach((noteEl, idx) => {
+      const note = step.notes[idx];
+      if (!note) return;
+      if (!opts.layoutOnly) {
+        noteEl.innerHTML = `<span>${note.label}</span><strong>${note.text}</strong>`;
+      }
+      noteEl.style.setProperty("--note-x", safeNoteOffset(noteEl, "x", note.x));
+      noteEl.style.setProperty("--note-y", safeNoteOffset(noteEl, "y", note.y));
+      noteEl.style.setProperty("--note-rotate", note.rotate);
+      noteEl.style.setProperty("--note-bg", note.bg);
+      noteEl.style.setProperty("--note-opacity", "1");
+      noteEl.style.setProperty("--note-scale", note.scale || "1");
+    });
+  };
+
   const renderStep = (index, opts = {}) => {
     const next = clamp(index, 0, orbitSteps.length - 1);
+    if (next === activeIndex && opts.layoutOnly) {
+      renderOrbitNotes(orbitSteps[next], { layoutOnly: true });
+      return;
+    }
     if (next === activeIndex && !opts.force) return;
     activeIndex = next;
     const step = orbitSteps[next];
@@ -369,17 +394,7 @@ if (orbitSection) {
       }
     }
 
-    orbitNotes.forEach((noteEl, idx) => {
-      const note = step.notes[idx];
-      if (!note) return;
-      noteEl.innerHTML = `<span>${note.label}</span><strong>${note.text}</strong>`;
-      noteEl.style.setProperty("--note-x", safeNoteOffset(noteEl, "x", note.x));
-      noteEl.style.setProperty("--note-y", safeNoteOffset(noteEl, "y", note.y));
-      noteEl.style.setProperty("--note-rotate", note.rotate);
-      noteEl.style.setProperty("--note-bg", note.bg);
-      noteEl.style.setProperty("--note-opacity", "1");
-      noteEl.style.setProperty("--note-scale", note.scale || "1");
-    });
+    renderOrbitNotes(step);
 
     orbitNavItems.forEach((item) => {
       item.classList.toggle("is-active", Number(item.dataset.orbitNav) === next);
@@ -400,6 +415,7 @@ if (orbitSection) {
   };
 
   const schedule = () => {
+    if (!canPinStory()) return;
     if (orbitFrame) return;
     orbitFrame = requestAnimationFrame(updateFromScroll);
   };
@@ -440,20 +456,30 @@ if (orbitSection) {
   });
 
   window.addEventListener("scroll", schedule, { passive: true });
-  window.addEventListener("resize", () => {
-    syncStoryMode();
-    renderStep(activeIndex < 0 ? 0 : activeIndex, { force: true });
+  const refreshStoryLayout = (opts = {}) => {
+    const wasPinned = storyPinned;
+    const isPinned = syncStoryMode();
+    const viewportWidth = window.innerWidth;
+    const widthChanged = Math.abs(viewportWidth - lastStoryViewportWidth) > 12;
+    lastStoryViewportWidth = viewportWidth;
+
+    if (activeIndex < 0) {
+      renderStep(0, { force: true });
+    } else if (opts.force || wasPinned !== isPinned) {
+      renderStep(activeIndex, { force: true });
+    } else if (isPinned || widthChanged) {
+      renderStep(activeIndex, { layoutOnly: true });
+    }
+
     schedule();
-  });
+  };
+
+  window.addEventListener("resize", refreshStoryLayout);
   compactView.addEventListener?.("change", () => {
-    syncStoryMode();
-    renderStep(activeIndex < 0 ? 0 : activeIndex, { force: true });
-    schedule();
+    refreshStoryLayout({ force: true });
   });
   reducedMotion.addEventListener?.("change", () => {
-    syncStoryMode();
-    renderStep(activeIndex < 0 ? 0 : activeIndex, { force: true });
-    schedule();
+    refreshStoryLayout({ force: true });
   });
   syncStoryMode();
   renderStep(0, { force: true });
