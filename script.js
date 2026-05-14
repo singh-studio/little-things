@@ -271,6 +271,13 @@ if (orbitSection) {
   let textAnimations = [];
 
   const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+  const canPinStory = () => !compactView.matches && !reducedMotion.matches;
+  const syncStoryMode = () => {
+    const shouldPin = canPinStory();
+    orbitSection.classList.toggle("is-pinned-story", shouldPin);
+    return shouldPin;
+  };
+
   const cssLengthToPx = (value) => {
     if (typeof value !== "string") return Number(value) || 0;
     const amount = parseFloat(value);
@@ -381,7 +388,7 @@ if (orbitSection) {
 
   const updateFromScroll = () => {
     orbitFrame = 0;
-    if (!orbitScroll || compactView.matches || reducedMotion.matches) return;
+    if (!orbitScroll || !syncStoryMode()) return;
     const rect = orbitScroll.getBoundingClientRect();
     const available = Math.max(1, rect.height - window.innerHeight);
     const progress = clamp(-rect.top / available, 0, 1);
@@ -403,7 +410,7 @@ if (orbitSection) {
   };
 
   const syncScrollToStep = (index) => {
-    if (!orbitScroll || compactView.matches || reducedMotion.matches) return;
+    if (!orbitScroll || !canPinStory()) return;
     const rect = orbitScroll.getBoundingClientRect();
     const available = Math.max(1, rect.height - window.innerHeight);
     const targetY = window.scrollY + rect.top + available * stepProgress(index);
@@ -434,9 +441,21 @@ if (orbitSection) {
 
   window.addEventListener("scroll", schedule, { passive: true });
   window.addEventListener("resize", () => {
+    syncStoryMode();
     renderStep(activeIndex < 0 ? 0 : activeIndex, { force: true });
     schedule();
   });
+  compactView.addEventListener?.("change", () => {
+    syncStoryMode();
+    renderStep(activeIndex < 0 ? 0 : activeIndex, { force: true });
+    schedule();
+  });
+  reducedMotion.addEventListener?.("change", () => {
+    syncStoryMode();
+    renderStep(activeIndex < 0 ? 0 : activeIndex, { force: true });
+    schedule();
+  });
+  syncStoryMode();
   renderStep(0, { force: true });
   schedule();
 }
