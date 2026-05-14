@@ -2204,7 +2204,7 @@ body.menu-open .back-to-top {
 
 .story {
   position: relative;
-  overflow: clip;
+  overflow: visible;
   color: var(--paper-soft);
   background:
     radial-gradient(ellipse 80% 60% at 30% 20%, rgba(199, 154, 63, 0.14), transparent 60%),
@@ -2255,7 +2255,7 @@ body.menu-open .back-to-top {
 .story-track {
   position: relative;
   z-index: 1;
-  height: 480dvh;
+  height: 360dvh;
 }
 
 .story-pin {
