@@ -76,9 +76,39 @@ const menuButton = document.querySelector("[data-menu-toggle]");
 const menuClose = document.querySelector("[data-menu-close]");
 const menuOverlay = document.querySelector("[data-menu-overlay]");
 const backToTop = document.querySelector("[data-back-to-top]");
+let lastScrollY = Math.max(0, window.scrollY);
+let navIsCompact = false;
+let navRestoreTimer;
 
 const setScrolledNav = (isScrolled) => {
   siteNav?.classList.toggle("is-scrolled", isScrolled);
+};
+
+const clearNavRestore = () => {
+  window.clearTimeout(navRestoreTimer);
+  siteNav?.classList.remove("is-restoring");
+};
+
+const setCompactNav = (isCompact, options = {}) => {
+  if (!siteNav) return;
+
+  if (isCompact || !options.slowRestore) {
+    clearNavRestore();
+  }
+
+  const slowRestore = !isCompact && options.slowRestore && navIsCompact;
+
+  if (slowRestore) {
+    window.clearTimeout(navRestoreTimer);
+    siteNav.classList.add("is-restoring");
+    navRestoreTimer = window.setTimeout(() => {
+      siteNav.classList.remove("is-restoring");
+    }, 1050);
+  }
+
+  if (navIsCompact === isCompact) return;
+  navIsCompact = isCompact;
+  siteNav.classList.toggle("is-compact", isCompact);
 };
 
 const setBackToTop = (isVisible) => {
@@ -90,9 +120,20 @@ const setBackToTop = (isVisible) => {
 
 const syncScrollChrome = () => {
   const currentY = Math.max(0, window.scrollY);
+  const delta = currentY - lastScrollY;
+  const canCompact = !compactView.matches && currentY > 88;
+
+  if (!canCompact) {
+    setCompactNav(false);
+  } else if (delta > 8 || (!navIsCompact && currentY > 180 && Math.abs(delta) < 2)) {
+    setCompactNav(true);
+  } else if (delta < -8) {
+    setCompactNav(false, { slowRestore: true });
+  }
 
   setScrolledNav(currentY > 24);
   setBackToTop(currentY > 680);
+  lastScrollY = currentY;
 };
 
 window.addEventListener("scroll", syncScrollChrome, { passive: true });
@@ -101,6 +142,7 @@ syncScrollChrome();
 
 backToTop?.addEventListener("click", (event) => {
   event.preventDefault();
+  setCompactNav(false, { slowRestore: true });
   window.scrollTo({ top: 0, behavior: reducedMotion.matches ? "auto" : "smooth" });
 });
 
