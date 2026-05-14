@@ -78,9 +78,22 @@ const menuOverlay = document.querySelector("[data-menu-overlay]");
 const backToTop = document.querySelector("[data-back-to-top]");
 let lastScrollY = window.scrollY;
 let navIsCompact = false;
+let navRestoreTimer;
 
-const setCompactNav = (isCompact) => {
-  if (!siteNav || navIsCompact === isCompact) return;
+const setCompactNav = (isCompact, options = {}) => {
+  if (!siteNav) return;
+
+  window.clearTimeout(navRestoreTimer);
+  if (!isCompact && options.slowRestore && navIsCompact) {
+    siteNav.classList.add("is-restoring");
+    navRestoreTimer = window.setTimeout(() => {
+      siteNav.classList.remove("is-restoring");
+    }, 960);
+  } else {
+    siteNav.classList.remove("is-restoring");
+  }
+
+  if (navIsCompact === isCompact) return;
   navIsCompact = isCompact;
   siteNav.classList.toggle("is-compact", isCompact);
 };
@@ -103,7 +116,7 @@ const syncScrollChrome = () => {
   } else if (delta > 6 || (!navIsCompact && currentY > 160 && Math.abs(delta) <= 6)) {
     setCompactNav(true);
   } else if (delta < -6) {
-    setCompactNav(false);
+    setCompactNav(false, { slowRestore: true });
   }
 
   setBackToTop(currentY > 680);
