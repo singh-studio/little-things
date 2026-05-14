@@ -22,7 +22,7 @@ const orbitSteps = [
     key: "glints",
     topline: "Details",
     heading: "Save the details you want to remember.",
-    body: "Keep gift ideas, preferences, stories, important dates, and things they are going through.",
+    body: "Keep gift ideas, preferences, stories, important dates, and what they're going through.",
     screen: `
       <img class="screen-capture" src="./assets/screenshots/what-you-notice.webp" alt="" loading="lazy" decoding="async" />
     `,
@@ -71,20 +71,41 @@ const compactView = window.matchMedia("(max-width: 820px)");
 /* ========================  mobile menu  ======================== */
 
 const body = document.body;
+const siteNav = document.querySelector(".site-nav");
 const menuButton = document.querySelector("[data-menu-toggle]");
+const menuClose = document.querySelector("[data-menu-close]");
 const menuOverlay = document.querySelector("[data-menu-overlay]");
+
+const syncCompactNav = () => {
+  if (!siteNav) return;
+  siteNav.classList.toggle("is-compact", window.scrollY > 28 && !compactView.matches);
+};
+
+window.addEventListener("scroll", syncCompactNav, { passive: true });
+window.addEventListener("resize", syncCompactNav);
+syncCompactNav();
 
 if (menuButton && menuOverlay) {
   const setMenu = (isOpen) => {
+    const shouldRestoreFocus =
+      !isOpen && menuOverlay.contains(document.activeElement);
     menuButton.setAttribute("aria-expanded", String(isOpen));
     menuButton.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
     menuOverlay.classList.toggle("is-open", isOpen);
     menuOverlay.setAttribute("aria-hidden", String(!isOpen));
     body.classList.toggle("menu-open", isOpen);
+    if (isOpen && menuClose) menuClose.focus({ preventScroll: true });
+    if (shouldRestoreFocus) menuButton.focus({ preventScroll: true });
   };
 
   menuButton.addEventListener("click", () => {
     setMenu(menuButton.getAttribute("aria-expanded") !== "true");
+  });
+
+  menuClose?.addEventListener("click", () => setMenu(false));
+
+  menuOverlay.addEventListener("click", (event) => {
+    if (event.target === menuOverlay) setMenu(false);
   });
 
   menuOverlay.querySelectorAll("a").forEach((link) => {
@@ -434,7 +455,7 @@ if (
       return;
     }
     if (!betaConsent.checked) {
-      betaMessage.textContent = "Please confirm we can contact you about the beta.";
+      betaMessage.textContent = "Please confirm Little Things can contact you about the beta.";
       betaConsent.focus();
       return;
     }
@@ -463,7 +484,7 @@ if (
 
       if (response.status === 201) {
         betaForm.reset();
-        betaMessage.textContent = "You are on the interest list. We will email if a spot opens.";
+        betaMessage.textContent = "You are on the interest list. A beta invite will be sent if a spot opens.";
         return;
       }
 

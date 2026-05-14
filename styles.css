@@ -282,6 +282,12 @@ summary:focus-visible,
     0 4px 8px rgba(60, 40, 20, 0.05);
   backdrop-filter: saturate(140%) blur(20px);
   transform: translateX(-50%);
+  transition:
+    width 520ms var(--ease-heavy),
+    min-height 520ms var(--ease-heavy),
+    padding 520ms var(--ease-heavy),
+    background 520ms var(--ease-heavy),
+    box-shadow 520ms var(--ease-heavy);
 }
 
 .brand-mark {
@@ -302,12 +308,17 @@ summary:focus-visible,
   height: 2.4rem;
   border-radius: 0.85rem;
   box-shadow: 0 8px 20px rgba(60, 40, 20, 0.12);
+  transition:
+    width 520ms var(--ease-heavy),
+    height 520ms var(--ease-heavy),
+    border-radius 520ms var(--ease-heavy);
 }
 
 .desktop-links {
   display: flex;
   justify-content: center;
   gap: 1.4rem;
+  transition: gap 520ms var(--ease-heavy);
 }
 
 .desktop-links a {
@@ -351,6 +362,33 @@ summary:focus-visible,
   transform: translate(-50%, 0);
 }
 
+@media (min-width: 821px) {
+  .site-nav.is-compact {
+    width: min(calc(100% - 1.6rem), 820px);
+    min-height: 3.55rem;
+    padding: 0.38rem 0.42rem 0.38rem 0.72rem;
+    background: rgba(251, 244, 231, 0.9);
+    box-shadow:
+      0 1px 1px rgba(255, 255, 255, 0.74) inset,
+      0 14px 28px rgba(60, 40, 20, 0.1),
+      0 3px 6px rgba(60, 40, 20, 0.04);
+  }
+
+  .site-nav.is-compact .brand-mark img {
+    width: 2.05rem;
+    height: 2.05rem;
+    border-radius: 0.7rem;
+  }
+
+  .site-nav.is-compact .desktop-links {
+    gap: 1rem;
+  }
+
+  .site-nav.is-compact .nav-button {
+    min-height: 2.65rem;
+  }
+}
+
 .nav-button,
 .primary-action,
 button.primary-action {
@@ -371,6 +409,8 @@ button.primary-action {
   text-decoration: none;
   box-shadow: 0 12px 26px rgba(26, 25, 22, 0.18);
   transition:
+    min-height 520ms var(--ease-heavy),
+    padding 520ms var(--ease-heavy),
     transform 460ms var(--ease-heavy),
     box-shadow 460ms var(--ease-heavy),
     background 460ms var(--ease-heavy);
@@ -468,6 +508,40 @@ button.primary-action i {
 .menu-overlay.is-open {
   opacity: 1;
   pointer-events: auto;
+}
+
+.menu-close {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  color: var(--ink);
+  background: var(--paper-soft);
+  border: 1px solid rgba(251, 244, 231, 0.24);
+  border-radius: 999px;
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.24);
+  opacity: 0;
+  transform: translateY(-0.4rem) scale(0.96);
+  transition: opacity 420ms var(--ease-heavy), transform 420ms var(--ease-heavy);
+}
+
+.menu-close span {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.menu-overlay.is-open .menu-close {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 80ms;
+}
+
+.menu-close:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 0.25rem;
 }
 
 .menu-overlay nav {
@@ -777,7 +851,7 @@ button.primary-action i {
 
 .orbit-card {
   position: absolute;
-  z-index: 3;
+  z-index: 6;
   width: 14rem;
   padding: 0.95rem 1rem 1.05rem;
   background: var(--paper-soft);
@@ -2206,7 +2280,7 @@ button.primary-action i {
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index: 3;
+  z-index: 6;
   width: 13rem;
   min-height: 6.5rem;
   padding: 0.95rem 1rem;
@@ -2842,6 +2916,26 @@ button.primary-action i {
   font-size: 1.4rem;
   line-height: 0.7;
   color: rgba(251, 244, 231, 0.7);
+}
+
+.aside-link {
+  position: relative;
+  margin-top: 1.5rem;
+}
+
+.aside-link a {
+  color: var(--paper-soft);
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(251, 244, 231, 0.46);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  transition: text-decoration-color 320ms var(--ease-heavy);
+}
+
+.aside-link a:hover {
+  text-decoration-color: var(--paper-soft);
 }
 
 /* =====================================  DOCS + FAQ  ===================================== */
@@ -3496,22 +3590,22 @@ button.primary-action i {
   .stage-rings .ring-3 { display: none; }
 
   .orbit-card {
-    width: min(10.9rem, calc(50% - 1.2rem));
-    padding: 0.78rem 0.85rem 0.9rem;
+    width: min(9.8rem, calc(50% - 1rem));
+    padding: 0.72rem 0.78rem 0.82rem;
   }
 
   .orbit-card strong {
-    font-size: 0.92rem;
+    font-size: 0.86rem;
   }
 
   .orbit-card .card-meta {
-    font-size: 0.68rem;
+    font-size: 0.64rem;
   }
 
-  .orbit-card-1 { top: 3%; right: 1.2rem; }
-  .orbit-card-2 { top: 18%; left: 1.2rem; }
-  .orbit-card-3 { right: 1.2rem; bottom: 14%; }
-  .orbit-card-4 { left: 1.2rem; bottom: 1.2rem; }
+  .orbit-card-1 { top: 4%; right: 0.8rem; }
+  .orbit-card-2 { top: 22%; left: 0.8rem; }
+  .orbit-card-3 { right: 0.8rem; bottom: 16%; }
+  .orbit-card-4 { left: 0.8rem; bottom: 2rem; }
 
   .hero-stage-caption {
     margin-top: 1rem;
@@ -3623,13 +3717,13 @@ button.primary-action i {
   .story-rings .ring-c { display: none; }
 
   .story-memory {
-    width: 9.6rem;
+    width: min(8.4rem, calc(50% - 0.8rem));
     min-height: 5.2rem;
-    padding: 0.7rem 0.78rem;
+    padding: 0.66rem 0.72rem;
   }
 
   .story-memory strong {
-    font-size: 0.86rem;
+    font-size: 0.8rem;
   }
 
   .story-memory[data-orbit-note="0"] { --note-x: -5rem; --note-y: -10.5rem; }
@@ -3764,17 +3858,43 @@ button.primary-action i {
   .orbit-card-2,
   .orbit-card-3,
   .orbit-card-4 {
-    width: clamp(8.4rem, 38vw, 9.5rem);
-    padding: 0.7rem 0.78rem 0.8rem;
+    width: clamp(6.9rem, 32vw, 8.1rem);
+    padding: 0.58rem 0.64rem 0.66rem;
   }
 
-  .orbit-card-1 { top: 0.6rem; right: 1rem; }
-  .orbit-card-2 { top: 5.6rem; left: 1rem; }
-  .orbit-card-3 { right: 1rem; bottom: 5.8rem; }
-  .orbit-card-4 { left: 1rem; bottom: 0.6rem; }
+  .orbit-card-1 { top: 0.7rem; right: 0.65rem; }
+  .orbit-card-2 { top: 5rem; left: 0.65rem; }
+  .orbit-card-3 { right: 0.65rem; bottom: 5.2rem; }
+  .orbit-card-4 { left: 0.65rem; bottom: 0.7rem; }
 
   .orbit-card .card-meta {
     display: none;
+  }
+
+  .orbit-card strong {
+    font-size: 0.76rem;
+  }
+
+  .orbit-card .card-tag {
+    margin-bottom: 0.38rem;
+    padding: 0.14rem 0.38rem;
+    font-size: 0.55rem;
+  }
+
+  .story-memory {
+    width: clamp(6.9rem, 32vw, 8.1rem);
+    min-height: 4.4rem;
+    padding: 0.58rem 0.64rem;
+  }
+
+  .story-memory strong {
+    font-size: 0.74rem;
+  }
+
+  .story-memory span {
+    margin-bottom: 0.34rem;
+    padding: 0.13rem 0.36rem;
+    font-size: 0.52rem;
   }
 
   .manifesto-headline,
