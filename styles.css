@@ -777,7 +777,7 @@ button.primary-action i {
 
 .orbit-card {
   position: absolute;
-  z-index: 5;
+  z-index: 3;
   width: 14rem;
   padding: 0.95rem 1rem 1.05rem;
   background: var(--paper-soft);
@@ -789,6 +789,7 @@ button.primary-action i {
     0 3px 6px rgba(60, 40, 20, 0.08);
   animation: drift 13s ease-in-out infinite;
   animation-delay: var(--drift-delay, 0s);
+  pointer-events: none;
   transform: translate(var(--ox, 0), var(--oy, 0)) rotate(var(--rot, 0deg));
 }
 
@@ -850,28 +851,28 @@ button.primary-action i {
 
 .orbit-card-1 {
   top: 6%;
-  right: -2%;
+  right: 0.3rem;
   --ox: 0; --oy: 0; --rot: 4deg;
   background: var(--paper-soft);
 }
 
 .orbit-card-2 {
   top: 28%;
-  left: -8%;
+  left: 0.3rem;
   --ox: 0; --oy: 0; --rot: -6deg;
   background: #eef3e5;
 }
 
 .orbit-card-3 {
   bottom: 8%;
-  right: -4%;
+  right: 0.3rem;
   --ox: 0; --oy: 0; --rot: -3deg;
   background: var(--rose);
 }
 
 .orbit-card-4 {
   bottom: 0%;
-  left: -2%;
+  left: 0.3rem;
   --ox: 0; --oy: 0; --rot: 5deg;
   background: var(--lavender);
 }
@@ -2205,7 +2206,7 @@ button.primary-action i {
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index: 5;
+  z-index: 3;
   width: 13rem;
   min-height: 6.5rem;
   padding: 0.95rem 1rem;
@@ -2226,6 +2227,7 @@ button.primary-action i {
     transform 760ms var(--ease-heavy),
     opacity 760ms var(--ease-heavy),
     background 760ms var(--ease-heavy);
+  pointer-events: none;
   will-change: transform, opacity;
 }
 
