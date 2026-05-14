@@ -267,7 +267,6 @@ if (orbitSection) {
   const orbitNavItems = Array.from(orbitSection.querySelectorAll("[data-orbit-nav]"));
   let activeIndex = -1;
   let orbitFrame = 0;
-  let orbitVisible = false;
   let screenAnimation = null;
   let textAnimations = [];
 
@@ -394,7 +393,7 @@ if (orbitSection) {
   };
 
   const schedule = () => {
-    if (!orbitVisible || orbitFrame) return;
+    if (orbitFrame) return;
     orbitFrame = requestAnimationFrame(updateFromScroll);
   };
 
@@ -433,22 +432,13 @@ if (orbitSection) {
     item.addEventListener("click", () => select(Number(item.dataset.orbitNav)));
   });
 
-  const orbitObserver = new IntersectionObserver(
-    (entries) => {
-      const entry = entries[0];
-      orbitVisible = Boolean(entry && entry.isIntersecting);
-      if (orbitVisible) schedule();
-    },
-    { threshold: 0.04 },
-  );
-
-  orbitObserver.observe(orbitSection);
   window.addEventListener("scroll", schedule, { passive: true });
   window.addEventListener("resize", () => {
     renderStep(activeIndex < 0 ? 0 : activeIndex, { force: true });
     schedule();
   });
   renderStep(0, { force: true });
+  schedule();
 }
 
 /* ========================  beta form  ======================== */
