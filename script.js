@@ -6,14 +6,14 @@ const orbitSteps = [
   {
     key: "people",
     topline: "People",
-    heading: "Start with the people who matter.",
-    body: "Keep a private list of the people you want to remember with more care.",
+    heading: "Start with a few close people.",
+    body: "Add the people you want to remember well.",
     screen: `
       <img class="screen-capture" src="./assets/screenshots/start-with-someone.webp" alt="" loading="lazy" decoding="async" />
     `,
     notes: [
       { label: "Private list", text: "People you care about", x: "-18rem", y: "-13rem", rotate: "-8deg", bg: "#fdfcf8" },
-      { label: "Add someone", text: "Manual or contacts", x: "17rem", y: "-12rem", rotate: "6deg", bg: "#d4dfc7" },
+      { label: "Add someone", text: "By name or contacts", x: "17rem", y: "-12rem", rotate: "6deg", bg: "#d4dfc7" },
       { label: "Start small", text: "One person is enough", x: "-19rem", y: "12rem", rotate: "5deg", bg: "#ebccbc" },
       { label: "Close circle", text: "Friends and family", x: "18rem", y: "12rem", rotate: "-5deg", bg: "#d6cee0" },
     ],
@@ -22,7 +22,7 @@ const orbitSteps = [
     key: "glints",
     topline: "Details",
     heading: "Save the details you want to remember.",
-    body: "Keep gift ideas, preferences, stories, important dates, and what they're going through.",
+    body: "Keep gift ideas, preferences, stories, important dates, and what's happening in their life.",
     screen: `
       <img class="screen-capture" src="./assets/screenshots/what-you-notice.webp" alt="" loading="lazy" decoding="async" />
     `,
@@ -37,7 +37,7 @@ const orbitSteps = [
     key: "your-space",
     topline: "Reminders",
     heading: "Set gentle nudges for moments that matter.",
-    body: "Use local reminders for birthdays, check-ins, appointments, or times when a message would matter.",
+    body: "Use local reminders for birthdays, check-ins, appointments, or moments when a message would matter.",
     screen: `
       <img class="screen-capture" src="./assets/screenshots/your-space.webp" alt="" loading="lazy" decoding="async" />
     `,
@@ -75,15 +75,50 @@ const siteNav = document.querySelector(".site-nav");
 const menuButton = document.querySelector("[data-menu-toggle]");
 const menuClose = document.querySelector("[data-menu-close]");
 const menuOverlay = document.querySelector("[data-menu-overlay]");
+const backToTop = document.querySelector("[data-back-to-top]");
+let lastScrollY = window.scrollY;
+let navIsCompact = false;
 
-const syncCompactNav = () => {
-  if (!siteNav) return;
-  siteNav.classList.toggle("is-compact", window.scrollY > 28 && !compactView.matches);
+const setCompactNav = (isCompact) => {
+  if (!siteNav || navIsCompact === isCompact) return;
+  navIsCompact = isCompact;
+  siteNav.classList.toggle("is-compact", isCompact);
 };
 
-window.addEventListener("scroll", syncCompactNav, { passive: true });
-window.addEventListener("resize", syncCompactNav);
-syncCompactNav();
+const setBackToTop = (isVisible) => {
+  if (!backToTop) return;
+  backToTop.classList.toggle("is-visible", isVisible);
+  backToTop.setAttribute("aria-hidden", String(!isVisible));
+  backToTop.tabIndex = isVisible ? 0 : -1;
+};
+
+const syncScrollChrome = () => {
+  const currentY = Math.max(0, window.scrollY);
+  const delta = currentY - lastScrollY;
+
+  if (compactView.matches) {
+    setCompactNav(false);
+  } else if (currentY < 48) {
+    setCompactNav(false);
+  } else if (delta > 6 || (!navIsCompact && currentY > 160 && Math.abs(delta) <= 6)) {
+    setCompactNav(true);
+  } else if (delta < -6) {
+    setCompactNav(false);
+  }
+
+  setBackToTop(currentY > 680);
+  lastScrollY = currentY;
+};
+
+window.addEventListener("scroll", syncScrollChrome, { passive: true });
+window.addEventListener("resize", syncScrollChrome);
+syncScrollChrome();
+
+backToTop?.addEventListener("click", (event) => {
+  event.preventDefault();
+  setCompactNav(false);
+  window.scrollTo({ top: 0, behavior: reducedMotion.matches ? "auto" : "smooth" });
+});
 
 if (menuButton && menuOverlay) {
   const setMenu = (isOpen) => {
@@ -484,7 +519,7 @@ if (
 
       if (response.status === 201) {
         betaForm.reset();
-        betaMessage.textContent = "You are on the interest list. A beta invite will be sent if a spot opens.";
+        betaMessage.textContent = "You're on the interest list. Selected testers receive a beta invite when a spot opens.";
         return;
       }
 
