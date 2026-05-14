@@ -90,13 +90,22 @@
 }
 
 html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
   scroll-behavior: smooth;
   background: var(--paper);
+  overscroll-behavior-x: none;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
+  position: relative;
   margin: 0;
+  width: 100%;
+  max-width: 100%;
   min-height: 100dvh;
+  overflow-x: clip;
   color: var(--ink);
   background:
     radial-gradient(ellipse 80% 40% at 70% 0%, rgba(199, 154, 63, 0.07), transparent 60%),
@@ -106,7 +115,17 @@ body {
   font-feature-settings: "ss01", "cv11";
   font-variant-numeric: tabular-nums;
   -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-x: none;
+  touch-action: pan-y pinch-zoom;
   text-rendering: optimizeLegibility;
+}
+
+@supports not (overflow: clip) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
 }
 
 body.menu-open {
@@ -262,7 +281,6 @@ summary:focus-visible,
 /* =====================================  nav  ===================================== */
 
 .site-nav {
-  --nav-chrome-duration: 520ms;
   position: fixed;
   top: 1.1rem;
   left: 50%;
@@ -284,16 +302,18 @@ summary:focus-visible,
   backdrop-filter: saturate(140%) blur(20px);
   transform: translateX(-50%);
   transition:
-    width var(--nav-chrome-duration) var(--ease-heavy),
-    min-height var(--nav-chrome-duration) var(--ease-heavy),
-    padding var(--nav-chrome-duration) var(--ease-heavy),
-    background var(--nav-chrome-duration) var(--ease-heavy),
-    box-shadow var(--nav-chrome-duration) var(--ease-heavy),
-    gap var(--nav-chrome-duration) var(--ease-heavy);
+    background 420ms var(--ease-heavy),
+    border-color 420ms var(--ease-heavy),
+    box-shadow 420ms var(--ease-heavy);
 }
 
-.site-nav.is-restoring {
-  --nav-chrome-duration: 900ms;
+.site-nav.is-scrolled {
+  background: rgba(251, 244, 231, 0.98);
+  border-color: rgba(26, 25, 22, 0.09);
+  box-shadow:
+    0 1px 1px rgba(255, 255, 255, 0.74) inset,
+    0 16px 32px rgba(60, 40, 20, 0.11),
+    0 3px 6px rgba(60, 40, 20, 0.04);
 }
 
 .brand-mark {
@@ -307,9 +327,6 @@ summary:focus-visible,
   letter-spacing: -0.01em;
   text-decoration: none;
   white-space: nowrap;
-  transition:
-    gap var(--nav-chrome-duration, 520ms) var(--ease-heavy),
-    font-size var(--nav-chrome-duration, 520ms) var(--ease-heavy);
 }
 
 .brand-mark img {
@@ -317,17 +334,12 @@ summary:focus-visible,
   height: 2.4rem;
   border-radius: 0.85rem;
   box-shadow: 0 8px 20px rgba(60, 40, 20, 0.12);
-  transition:
-    width var(--nav-chrome-duration, 520ms) var(--ease-heavy),
-    height var(--nav-chrome-duration, 520ms) var(--ease-heavy),
-    border-radius var(--nav-chrome-duration, 520ms) var(--ease-heavy);
 }
 
 .desktop-links {
   display: flex;
   justify-content: center;
   gap: 1.4rem;
-  transition: gap var(--nav-chrome-duration, 520ms) var(--ease-heavy);
 }
 
 .desktop-links a {
@@ -338,8 +350,7 @@ summary:focus-visible,
   font-weight: 600;
   letter-spacing: 0.005em;
   transition:
-    color 360ms var(--ease-heavy),
-    font-size var(--nav-chrome-duration, 520ms) var(--ease-heavy);
+    color 360ms var(--ease-heavy);
 }
 
 .desktop-links a::after {
@@ -373,51 +384,6 @@ summary:focus-visible,
   transform: translate(-50%, 0);
 }
 
-@media (min-width: 821px) {
-  .site-nav.is-compact {
-    gap: 0.72rem;
-    width: min(calc(100% - 1.6rem), 680px);
-    min-height: 3.08rem;
-    padding: 0.28rem 0.32rem 0.28rem 0.58rem;
-    background: rgba(251, 244, 231, 0.98);
-    box-shadow:
-      0 1px 1px rgba(255, 255, 255, 0.74) inset,
-      0 14px 28px rgba(60, 40, 20, 0.1),
-      0 3px 6px rgba(60, 40, 20, 0.04);
-  }
-
-  .site-nav.is-compact .brand-mark {
-    gap: 0.5rem;
-    font-size: 0.96rem;
-  }
-
-  .site-nav.is-compact .brand-mark img {
-    width: 1.78rem;
-    height: 1.78rem;
-    border-radius: 0.58rem;
-  }
-
-  .site-nav.is-compact .desktop-links {
-    gap: 0.72rem;
-  }
-
-  .site-nav.is-compact .desktop-links a {
-    font-size: 0.78rem;
-  }
-
-  .site-nav.is-compact .nav-button {
-    min-height: 2.3rem;
-    padding: 0.24rem 0.28rem 0.24rem 0.78rem;
-    font-size: 0.78rem;
-  }
-
-  .site-nav.is-compact .nav-button i {
-    width: 1.72rem;
-    height: 1.72rem;
-    font-size: 0.76rem;
-  }
-}
-
 .nav-button,
 .primary-action,
 button.primary-action {
@@ -438,9 +404,6 @@ button.primary-action {
   text-decoration: none;
   box-shadow: 0 12px 26px rgba(26, 25, 22, 0.18);
   transition:
-    min-height var(--nav-chrome-duration, 520ms) var(--ease-heavy),
-    padding var(--nav-chrome-duration, 520ms) var(--ease-heavy),
-    font-size var(--nav-chrome-duration, 520ms) var(--ease-heavy),
     transform 460ms var(--ease-heavy),
     box-shadow 460ms var(--ease-heavy),
     background 460ms var(--ease-heavy);
@@ -458,11 +421,7 @@ button.primary-action i {
   border-radius: 999px;
   font-size: 0.85rem;
   font-style: normal;
-  transition:
-    width var(--nav-chrome-duration, 520ms) var(--ease-heavy),
-    height var(--nav-chrome-duration, 520ms) var(--ease-heavy),
-    font-size var(--nav-chrome-duration, 520ms) var(--ease-heavy),
-    transform 460ms var(--ease-heavy);
+  transition: transform 460ms var(--ease-heavy);
 }
 
 .primary-action,
@@ -848,7 +807,11 @@ body.menu-open .back-to-top {
   display: grid;
   place-items: center;
   min-height: 44rem;
+  max-width: 100%;
+  overflow: clip;
   isolation: isolate;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .hero-stage-caption {
@@ -1022,29 +985,29 @@ body.menu-open .back-to-top {
 
 .orbit-card-1 {
   top: 7%;
-  right: -2.2rem;
-  --ox: 0.6rem; --oy: 0; --rot: 4deg;
+  right: 0;
+  --ox: 0.15rem; --oy: 0; --rot: 4deg;
   background: var(--paper-soft);
 }
 
 .orbit-card-2 {
   top: 35%;
-  left: -2.4rem;
-  --ox: -1rem; --oy: 0; --rot: -6deg;
+  left: 0;
+  --ox: -0.15rem; --oy: 0; --rot: -6deg;
   background: #eef3e5;
 }
 
 .orbit-card-3 {
   bottom: 12%;
-  right: -2.4rem;
-  --ox: 0.6rem; --oy: 0; --rot: -3deg;
+  right: 0;
+  --ox: 0.15rem; --oy: 0; --rot: -3deg;
   background: var(--rose);
 }
 
 .orbit-card-4 {
   bottom: 2%;
-  left: -2.2rem;
-  --ox: -1rem; --oy: 0; --rot: 5deg;
+  left: 0;
+  --ox: -0.15rem; --oy: 0; --rot: 5deg;
   background: var(--lavender);
 }
 
@@ -3545,10 +3508,10 @@ body.menu-open .back-to-top {
     width: 11rem;
   }
 
-  .orbit-card-1 { top: 8%; right: 0.25rem; --ox: 0.3rem; }
-  .orbit-card-2 { top: 31%; left: 0.25rem; --ox: -0.8rem; }
-  .orbit-card-3 { bottom: 10%; right: 0.25rem; --ox: 0.3rem; }
-  .orbit-card-4 { bottom: 1%; left: 0.25rem; --ox: -0.8rem; }
+  .orbit-card-1 { top: 8%; right: 0; --ox: 0.12rem; }
+  .orbit-card-2 { top: 31%; left: 0; --ox: -0.12rem; }
+  .orbit-card-3 { bottom: 10%; right: 0; --ox: 0.12rem; }
+  .orbit-card-4 { bottom: 1%; left: 0; --ox: -0.12rem; }
 
   .examples-board {
     grid-template-columns: repeat(8, 1fr);
@@ -3707,10 +3670,10 @@ body.menu-open .back-to-top {
     font-size: 0.64rem;
   }
 
-  .orbit-card-1 { top: 8%; right: 0.15rem; --ox: 0.2rem; }
-  .orbit-card-2 { top: 27%; left: 0.15rem; --ox: -0.7rem; }
-  .orbit-card-3 { right: 0.15rem; bottom: 16%; --ox: 0.2rem; }
-  .orbit-card-4 { left: 0.15rem; bottom: 2rem; --ox: -0.7rem; }
+  .orbit-card-1 { top: 8%; right: 0; --ox: 0.08rem; }
+  .orbit-card-2 { top: 27%; left: 0; --ox: -0.08rem; }
+  .orbit-card-3 { right: 0; bottom: 16%; --ox: 0.08rem; }
+  .orbit-card-4 { left: 0; bottom: 2rem; --ox: -0.08rem; }
 
   .hero-stage-caption {
     margin-top: 1rem;
@@ -3976,14 +3939,15 @@ body.menu-open .back-to-top {
   .orbit-card-2,
   .orbit-card-3,
   .orbit-card-4 {
-    width: clamp(5.8rem, 25vw, 6.4rem);
+    width: clamp(5.1rem, 22vw, 5.8rem);
     padding: 0.58rem 0.64rem 0.66rem;
+    animation: none;
   }
 
-  .orbit-card-1 { top: 1.2rem; right: -1rem; --ox: 0.2rem; }
-  .orbit-card-2 { top: 5.8rem; left: -1rem; --ox: -1.1rem; }
-  .orbit-card-3 { right: -1rem; bottom: 5rem; --ox: 0.2rem; }
-  .orbit-card-4 { left: -1rem; bottom: 0.7rem; --ox: -1.1rem; }
+  .orbit-card-1 { top: 1.2rem; right: 0; --ox: 0; }
+  .orbit-card-2 { top: 5.8rem; left: 0; --ox: 0; }
+  .orbit-card-3 { right: 0; bottom: 5rem; --ox: 0; }
+  .orbit-card-4 { left: 0; bottom: 0.7rem; --ox: 0; }
 
   .orbit-card .card-meta {
     display: none;

@@ -76,26 +76,9 @@ const menuButton = document.querySelector("[data-menu-toggle]");
 const menuClose = document.querySelector("[data-menu-close]");
 const menuOverlay = document.querySelector("[data-menu-overlay]");
 const backToTop = document.querySelector("[data-back-to-top]");
-let lastScrollY = window.scrollY;
-let navIsCompact = false;
-let navRestoreTimer;
 
-const setCompactNav = (isCompact, options = {}) => {
-  if (!siteNav) return;
-
-  window.clearTimeout(navRestoreTimer);
-  if (!isCompact && options.slowRestore && navIsCompact) {
-    siteNav.classList.add("is-restoring");
-    navRestoreTimer = window.setTimeout(() => {
-      siteNav.classList.remove("is-restoring");
-    }, 960);
-  } else {
-    siteNav.classList.remove("is-restoring");
-  }
-
-  if (navIsCompact === isCompact) return;
-  navIsCompact = isCompact;
-  siteNav.classList.toggle("is-compact", isCompact);
+const setScrolledNav = (isScrolled) => {
+  siteNav?.classList.toggle("is-scrolled", isScrolled);
 };
 
 const setBackToTop = (isVisible) => {
@@ -107,20 +90,9 @@ const setBackToTop = (isVisible) => {
 
 const syncScrollChrome = () => {
   const currentY = Math.max(0, window.scrollY);
-  const delta = currentY - lastScrollY;
 
-  if (compactView.matches) {
-    setCompactNav(false);
-  } else if (currentY < 48) {
-    setCompactNav(false);
-  } else if (delta > 6 || (!navIsCompact && currentY > 160 && Math.abs(delta) <= 6)) {
-    setCompactNav(true);
-  } else if (delta < -6) {
-    setCompactNav(false, { slowRestore: true });
-  }
-
+  setScrolledNav(currentY > 24);
   setBackToTop(currentY > 680);
-  lastScrollY = currentY;
 };
 
 window.addEventListener("scroll", syncScrollChrome, { passive: true });
@@ -129,7 +101,6 @@ syncScrollChrome();
 
 backToTop?.addEventListener("click", (event) => {
   event.preventDefault();
-  setCompactNav(false);
   window.scrollTo({ top: 0, behavior: reducedMotion.matches ? "auto" : "smooth" });
 });
 
