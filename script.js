@@ -386,7 +386,7 @@ if (orbitSection) {
     const rect = orbitScroll.getBoundingClientRect();
     const available = Math.max(1, rect.height - window.innerHeight);
     const progress = clamp(-rect.top / available, 0, 1);
-    const index = Math.round(progress * (orbitSteps.length - 1));
+    const index = clamp(Math.floor(progress * orbitSteps.length), 0, orbitSteps.length - 1);
     if (orbitProgress) {
       orbitProgress.style.setProperty("--orbit-progress", String(progress));
     }
@@ -399,8 +399,8 @@ if (orbitSection) {
   };
 
   const stepProgress = (index) => {
-    if (orbitSteps.length <= 1) return 0;
-    return clamp(index / (orbitSteps.length - 1), 0, 1);
+    if (orbitSteps.length <= 0) return 0;
+    return clamp((index + 0.5) / orbitSteps.length, 0, 1);
   };
 
   const syncScrollToStep = (index) => {
