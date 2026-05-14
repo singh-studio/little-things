@@ -262,6 +262,7 @@ summary:focus-visible,
 /* =====================================  nav  ===================================== */
 
 .site-nav {
+  --nav-chrome-duration: 520ms;
   position: fixed;
   top: 1.1rem;
   left: 50%;
@@ -283,12 +284,16 @@ summary:focus-visible,
   backdrop-filter: saturate(140%) blur(20px);
   transform: translateX(-50%);
   transition:
-    width 520ms var(--ease-heavy),
-    min-height 520ms var(--ease-heavy),
-    padding 520ms var(--ease-heavy),
-    background 520ms var(--ease-heavy),
-    box-shadow 520ms var(--ease-heavy),
-    gap 520ms var(--ease-heavy);
+    width var(--nav-chrome-duration) var(--ease-heavy),
+    min-height var(--nav-chrome-duration) var(--ease-heavy),
+    padding var(--nav-chrome-duration) var(--ease-heavy),
+    background var(--nav-chrome-duration) var(--ease-heavy),
+    box-shadow var(--nav-chrome-duration) var(--ease-heavy),
+    gap var(--nav-chrome-duration) var(--ease-heavy);
+}
+
+.site-nav.is-restoring {
+  --nav-chrome-duration: 900ms;
 }
 
 .brand-mark {
@@ -303,8 +308,8 @@ summary:focus-visible,
   text-decoration: none;
   white-space: nowrap;
   transition:
-    gap 520ms var(--ease-heavy),
-    font-size 520ms var(--ease-heavy);
+    gap var(--nav-chrome-duration, 520ms) var(--ease-heavy),
+    font-size var(--nav-chrome-duration, 520ms) var(--ease-heavy);
 }
 
 .brand-mark img {
@@ -313,16 +318,16 @@ summary:focus-visible,
   border-radius: 0.85rem;
   box-shadow: 0 8px 20px rgba(60, 40, 20, 0.12);
   transition:
-    width 520ms var(--ease-heavy),
-    height 520ms var(--ease-heavy),
-    border-radius 520ms var(--ease-heavy);
+    width var(--nav-chrome-duration, 520ms) var(--ease-heavy),
+    height var(--nav-chrome-duration, 520ms) var(--ease-heavy),
+    border-radius var(--nav-chrome-duration, 520ms) var(--ease-heavy);
 }
 
 .desktop-links {
   display: flex;
   justify-content: center;
   gap: 1.4rem;
-  transition: gap 520ms var(--ease-heavy);
+  transition: gap var(--nav-chrome-duration, 520ms) var(--ease-heavy);
 }
 
 .desktop-links a {
@@ -334,7 +339,7 @@ summary:focus-visible,
   letter-spacing: 0.005em;
   transition:
     color 360ms var(--ease-heavy),
-    font-size 520ms var(--ease-heavy);
+    font-size var(--nav-chrome-duration, 520ms) var(--ease-heavy);
 }
 
 .desktop-links a::after {
@@ -433,8 +438,9 @@ button.primary-action {
   text-decoration: none;
   box-shadow: 0 12px 26px rgba(26, 25, 22, 0.18);
   transition:
-    min-height 520ms var(--ease-heavy),
-    padding 520ms var(--ease-heavy),
+    min-height var(--nav-chrome-duration, 520ms) var(--ease-heavy),
+    padding var(--nav-chrome-duration, 520ms) var(--ease-heavy),
+    font-size var(--nav-chrome-duration, 520ms) var(--ease-heavy),
     transform 460ms var(--ease-heavy),
     box-shadow 460ms var(--ease-heavy),
     background 460ms var(--ease-heavy);
@@ -452,7 +458,11 @@ button.primary-action i {
   border-radius: 999px;
   font-size: 0.85rem;
   font-style: normal;
-  transition: transform 460ms var(--ease-heavy);
+  transition:
+    width var(--nav-chrome-duration, 520ms) var(--ease-heavy),
+    height var(--nav-chrome-duration, 520ms) var(--ease-heavy),
+    font-size var(--nav-chrome-duration, 520ms) var(--ease-heavy),
+    transform 460ms var(--ease-heavy);
 }
 
 .primary-action,
@@ -939,7 +949,7 @@ body.menu-open .back-to-top {
 .orbit-card {
   position: absolute;
   z-index: 6;
-  width: 14rem;
+  width: clamp(11.2rem, 11vw, 12.2rem);
   padding: 0.95rem 1rem 1.05rem;
   background: var(--paper-soft);
   border: 1px solid rgba(26, 25, 22, 0.1);
@@ -1011,30 +1021,30 @@ body.menu-open .back-to-top {
 }
 
 .orbit-card-1 {
-  top: 12%;
-  right: 0.7rem;
-  --ox: 0; --oy: 0; --rot: 4deg;
+  top: 7%;
+  right: -2.2rem;
+  --ox: 0.6rem; --oy: 0; --rot: 4deg;
   background: var(--paper-soft);
 }
 
 .orbit-card-2 {
-  top: 34%;
-  left: 0.7rem;
-  --ox: 0; --oy: 0; --rot: -6deg;
+  top: 35%;
+  left: -2.4rem;
+  --ox: -1rem; --oy: 0; --rot: -6deg;
   background: #eef3e5;
 }
 
 .orbit-card-3 {
-  bottom: 8%;
-  right: 0.3rem;
-  --ox: 0; --oy: 0; --rot: -3deg;
+  bottom: 12%;
+  right: -2.4rem;
+  --ox: 0.6rem; --oy: 0; --rot: -3deg;
   background: var(--rose);
 }
 
 .orbit-card-4 {
-  bottom: 0%;
-  left: 0.3rem;
-  --ox: 0; --oy: 0; --rot: 5deg;
+  bottom: 2%;
+  left: -2.2rem;
+  --ox: -1rem; --oy: 0; --rot: 5deg;
   background: var(--lavender);
 }
 
@@ -3532,13 +3542,13 @@ body.menu-open .back-to-top {
   }
 
   .orbit-card {
-    width: clamp(11.5rem, 22vw, 13rem);
+    width: 11rem;
   }
 
-  .orbit-card-1 { top: 10%; right: 1.5rem; }
-  .orbit-card-2 { top: 31%; left: 1.5rem; }
-  .orbit-card-3 { bottom: 8%; right: 1.5rem; }
-  .orbit-card-4 { bottom: 1%; left: 1.5rem; }
+  .orbit-card-1 { top: 8%; right: 0.25rem; --ox: 0.3rem; }
+  .orbit-card-2 { top: 31%; left: 0.25rem; --ox: -0.8rem; }
+  .orbit-card-3 { bottom: 10%; right: 0.25rem; --ox: 0.3rem; }
+  .orbit-card-4 { bottom: 1%; left: 0.25rem; --ox: -0.8rem; }
 
   .examples-board {
     grid-template-columns: repeat(8, 1fr);
@@ -3685,7 +3695,7 @@ body.menu-open .back-to-top {
   .stage-rings .ring-3 { display: none; }
 
   .orbit-card {
-    width: min(9.8rem, calc(50% - 1rem));
+    width: min(8.8rem, calc(50% - 1.3rem));
     padding: 0.72rem 0.78rem 0.82rem;
   }
 
@@ -3697,10 +3707,10 @@ body.menu-open .back-to-top {
     font-size: 0.64rem;
   }
 
-  .orbit-card-1 { top: 8%; right: 0.8rem; }
-  .orbit-card-2 { top: 27%; left: 0.8rem; }
-  .orbit-card-3 { right: 0.8rem; bottom: 16%; }
-  .orbit-card-4 { left: 0.8rem; bottom: 2rem; }
+  .orbit-card-1 { top: 8%; right: 0.15rem; --ox: 0.2rem; }
+  .orbit-card-2 { top: 27%; left: 0.15rem; --ox: -0.7rem; }
+  .orbit-card-3 { right: 0.15rem; bottom: 16%; --ox: 0.2rem; }
+  .orbit-card-4 { left: 0.15rem; bottom: 2rem; --ox: -0.7rem; }
 
   .hero-stage-caption {
     margin-top: 1rem;
@@ -3966,27 +3976,27 @@ body.menu-open .back-to-top {
   .orbit-card-2,
   .orbit-card-3,
   .orbit-card-4 {
-    width: clamp(6.9rem, 32vw, 8.1rem);
+    width: clamp(5.8rem, 25vw, 6.4rem);
     padding: 0.58rem 0.64rem 0.66rem;
   }
 
-  .orbit-card-1 { top: 1.4rem; right: 0.65rem; }
-  .orbit-card-2 { top: 6.1rem; left: 0.65rem; }
-  .orbit-card-3 { right: 0.65rem; bottom: 5.2rem; }
-  .orbit-card-4 { left: 0.65rem; bottom: 0.7rem; }
+  .orbit-card-1 { top: 1.2rem; right: -1rem; --ox: 0.2rem; }
+  .orbit-card-2 { top: 5.8rem; left: -1rem; --ox: -1.1rem; }
+  .orbit-card-3 { right: -1rem; bottom: 5rem; --ox: 0.2rem; }
+  .orbit-card-4 { left: -1rem; bottom: 0.7rem; --ox: -1.1rem; }
 
   .orbit-card .card-meta {
     display: none;
   }
 
   .orbit-card strong {
-    font-size: 0.76rem;
+    font-size: 0.68rem;
   }
 
   .orbit-card .card-tag {
     margin-bottom: 0.38rem;
-    padding: 0.14rem 0.38rem;
-    font-size: 0.55rem;
+    padding: 0.12rem 0.32rem;
+    font-size: 0.48rem;
   }
 
   .story-memory {
