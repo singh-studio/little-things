@@ -260,10 +260,26 @@ summary:focus-visible,
 }
 
 .skip-link {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
   position: fixed;
   top: 1rem;
   left: 1rem;
   z-index: 100;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  clip-path: none;
   padding: 0.75rem 1rem;
   color: var(--paper-soft);
   background: var(--ink);
@@ -271,11 +287,7 @@ summary:focus-visible,
   font-size: 0.85rem;
   font-weight: 700;
   text-decoration: none;
-  transform: translateY(-200%);
-}
-
-.skip-link:focus {
-  transform: translateY(0);
+  white-space: normal;
 }
 
 /* =====================================  nav  ===================================== */
