@@ -374,22 +374,22 @@
               <div class="beta-name-grid">
                 <label>
                   <span>First name</span>
-                  <input id="beta-first-name" name="first_name" type="text" autocomplete="given-name" placeholder="Jane" required />
+                  <input id="beta-first-name" name="first_name" type="text" autocomplete="given-name" placeholder="First name" required />
                 </label>
                 <label>
                   <span>Last name</span>
-                  <input id="beta-last-name" name="last_name" type="text" autocomplete="family-name" placeholder="Singh" required />
+                  <input id="beta-last-name" name="last_name" type="text" autocomplete="family-name" placeholder="Last name" required />
                 </label>
               </div>
               <label>
                 <span>Email for beta access</span>
-                <input id="beta-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+                <input id="beta-email" name="email" type="email" autocomplete="email" placeholder="Email address" required />
               </label>
               <div class="beta-name-grid">
                 <label>
                   <span>Platform</span>
                   <select id="beta-platform" name="platform" required>
-                    <option value="">Choose one</option>
+                    <option value="">Select platform</option>
                     <option value="iphone">iPhone</option>
                     <option value="android">Android</option>
                     <option value="not_sure">Not sure / just interested</option>
@@ -398,7 +398,7 @@
                 <label>
                   <span>Why I&rsquo;m interested</span>
                   <select id="beta-fit-reason" name="fit_reason">
-                    <option value="">Optional</option>
+                    <option value="">Select reason (optional)</option>
                     <option value="remember_details">I remember details about people</option>
                     <option value="private_notes">I keep private notes</option>
                     <option value="forget_but_care">I forget but care</option>
@@ -409,7 +409,7 @@
               </div>
               <label>
                 <span>Anything useful to know?</span>
-                <textarea id="beta-note" name="note" rows="3" maxlength="500" placeholder="Optional. A sentence or two is enough."></textarea>
+                <textarea id="beta-note" name="note" rows="3" maxlength="500" placeholder="Optional note"></textarea>
               </label>
               <label class="beta-consent">
                 <input id="beta-consent" name="consent_to_contact" type="checkbox" required />
