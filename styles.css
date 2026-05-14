@@ -93,7 +93,7 @@
 html {
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
   scroll-behavior: smooth;
   background: var(--paper);
   overscroll-behavior-x: none;
@@ -106,7 +106,7 @@ body {
   width: 100%;
   max-width: 100%;
   min-height: 100dvh;
-  overflow-x: hidden;
+  overflow-x: clip;
   color: var(--ink);
   background:
     radial-gradient(ellipse 80% 40% at 70% 0%, rgba(199, 154, 63, 0.07), transparent 60%),
@@ -2255,20 +2255,31 @@ body.menu-open .back-to-top {
 .story-track {
   position: relative;
   z-index: 1;
+  height: auto;
+  min-height: 0;
+}
+
+.story.is-pinned-story .story-track {
   height: 360dvh;
 }
 
 .story-pin {
-  position: sticky;
-  top: 0;
+  position: relative;
+  top: auto;
   display: grid;
   grid-template-columns: minmax(20rem, 0.55fr) minmax(0, 1fr);
   align-items: center;
   gap: 3rem;
   width: min(calc(100% - 1.6rem), var(--max));
-  min-height: 100dvh;
+  min-height: auto;
   margin: 0 auto;
   padding: clamp(4rem, 6vh, 5rem) 0 clamp(3rem, 4vh, 4rem);
+}
+
+.story.is-pinned-story .story-pin {
+  position: sticky;
+  top: 0;
+  min-height: 100dvh;
 }
 
 .story-side {
@@ -3824,12 +3835,23 @@ body.menu-open .back-to-top {
     height: auto;
   }
 
+  .story.is-pinned-story .story-track {
+    height: auto;
+  }
+
   .story-pin {
     position: relative;
+    top: auto;
     grid-template-columns: 1fr;
     min-height: auto;
     padding: 1rem 0 2.5rem;
     gap: 1.6rem;
+  }
+
+  .story.is-pinned-story .story-pin {
+    position: relative;
+    top: auto;
+    min-height: auto;
   }
 
   .story-side {
