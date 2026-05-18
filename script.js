@@ -495,6 +495,7 @@ const betaEmail = document.querySelector("#beta-email");
 const betaPlatform = document.querySelector("#beta-platform");
 const betaFitReason = document.querySelector("#beta-fit-reason");
 const betaNote = document.querySelector("#beta-note");
+const betaPrivacyConcerns = document.querySelector("#beta-privacy-concerns");
 const betaConsent = document.querySelector("#beta-consent");
 const betaCompany = document.querySelector("#beta-company");
 const betaMessage = document.querySelector("#beta-message");
@@ -571,6 +572,7 @@ if (
           platform: betaPlatform.value,
           fit_reason: betaFitReason.value || null,
           note: betaNote.value.trim() || null,
+          privacy_data_concerns: betaPrivacyConcerns?.value.trim() || null,
           consent_to_contact: true,
           source: "Website",
           submitted_at: new Date().toISOString(),
@@ -580,7 +582,7 @@ if (
 
       if (response.status === 201) {
         betaForm.reset();
-        betaMessage.textContent = "You're on the interest list. Selected testers receive a beta invite when a spot opens.";
+        betaMessage.textContent = "Thanks, your interest is registered. Kris will review it before any beta access is sent.";
         return;
       }
 
