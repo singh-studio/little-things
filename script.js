@@ -582,7 +582,8 @@ if (
 
       if (response.status === 201) {
         betaForm.reset();
-        betaMessage.textContent = "Thanks, your interest is registered. Kris will review it before any beta access is sent.";
+        betaMessage.textContent = "Thanks, redirecting you to the beta review note...";
+        window.location.assign("./beta-thanks.html");
         return;
       }
 
