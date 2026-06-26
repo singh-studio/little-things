@@ -8,33 +8,29 @@
     <link rel="icon" href="../assets/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,50..100,0..1&amp;family=Inter:wght@400;500;600;700;800&amp;family=Caveat:wght@500;600&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body class="document-page">
     <a class="skip-link" href="#content">Skip to content</a>
     <div class="grain" aria-hidden="true"></div>
-    <header class="site-nav" aria-label="Primary navigation">
-      <a class="brand-mark" href="../index.html#top"><img src="../assets/icon.png" alt="" /><span>Little Things</span></a>
+    <header class="site-nav" data-nav aria-label="Primary navigation">
+      <a class="brand-mark" href="../index.html#top" aria-label="Little Things, home"><span class="seal" aria-hidden="true"><span class="seal-dot" style="--c: var(--observation)"></span><span class="seal-dot" style="--c: var(--interest)"></span><span class="seal-dot" style="--c: var(--gift)"></span><span class="seal-dot" style="--c: var(--moment)"></span><span class="seal-dot" style="--c: var(--support)"></span></span><span class="brand-word">Little <em>things</em></span></a>
       <nav class="desktop-links" aria-label="Page sections">
-        <a href="../index.html#why">About</a>
-        <a href="../index.html#story">Features</a>
+        <a href="../index.html#glints">The five</a>
+        <a href="../index.html#how">How it works</a>
         <a href="../index.html#privacy">Privacy</a>
-        <a href="../index.html#docs">Docs</a>
       </nav>
-      <a class="nav-button magnetic" href="../index.html#beta"><span>Join beta</span><i aria-hidden="true">&nearr;</i></a>
+      <a class="nav-button" href="../index.html#get"><span>Get the app</span><i aria-hidden="true">&nearr;</i></a>
       <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" data-menu-toggle><span></span><span></span></button>
     </header>
     <div class="menu-overlay" data-menu-overlay aria-hidden="true">
-      <button class="menu-close" type="button" aria-label="Close menu" data-menu-close>
-        <span aria-hidden="true">&times;</span>
-      </button>
+      <button class="menu-close" type="button" aria-label="Close menu" data-menu-close><span aria-hidden="true">&times;</span></button>
       <nav aria-label="Mobile navigation">
-        <a href="../index.html#why">About</a>
-        <a href="../index.html#story">Features</a>
+        <a href="../index.html#glints">The five</a>
+        <a href="../index.html#how">How it works</a>
         <a href="../index.html#privacy">Privacy</a>
-        <a href="../index.html#docs">Docs</a>
-        <a href="../index.html#beta">Join beta</a>
+        <a href="../index.html#get">Get the app</a>
       </nav>
     </div>
 
@@ -45,7 +41,7 @@
 
     <main id="content">
       <section class="doc-hero reveal">
-        <p class="quiet-line">Last updated: April 22, 2026</p>
+        <p class="quiet-line">Last updated: June 26, 2026</p>
         <h1>Privacy.</h1>
         <p>
           Little Things keeps personal notes local. This page explains what the
@@ -60,13 +56,15 @@
           <a href="#stored">What the app stores</a>
           <a href="#permissions">Permissions</a>
           <a href="#export">Export</a>
-          <a href="#beta">Beta data</a>
+          <a href="#feedback">Feedback &amp; analytics</a>
+          <a href="#crash">Crash reports</a>
           <a href="#limits">Important limits</a>
+          <a href="#contact">Contact</a>
         </aside>
         <article class="doc-article">
           <section class="doc-callout reveal" id="short">
             <strong>At a glance</strong>
-            <p>Your people, notes, glints, moments, birthdays, and settings are stored on your device. Little Things doesn&rsquo;t keep a cloud copy of your relationship data.</p>
+            <p>Your people, notes, glints, moments, birthdays, and settings are stored on your device. There is no Little Things cloud copy of your relationship data.</p>
           </section>
 
           <section class="doc-section reveal" id="stored">
@@ -89,7 +87,7 @@
             <h3>Notifications</h3>
             <p>Little Things can schedule local reminders for check-ins and birthdays. They&rsquo;re created by your device, not pushed from a server.</p>
             <h3>Contacts</h3>
-            <p>Little Things asks for Contacts access only if you choose to import contacts. You choose which people to add, and import is one-time only.</p>
+            <p>Little Things asks for Contacts access only if you choose to import contacts. You choose which people to add, and the import is one-time &mdash; it copies the person&rsquo;s name, contact photo, and birthday into the local database on your device, and nothing is uploaded.</p>
             <h3>Photos</h3>
             <p>Little Things may ask for photo library access if you choose a profile image. It doesn&rsquo;t scan your photo library or upload it to a server.</p>
           </section>
@@ -97,14 +95,20 @@
           <section class="doc-section reveal" id="export">
             <h2>Export</h2>
             <p>Export creates a point-in-time JSON snapshot of your app data. The file is plain text and isn&rsquo;t encrypted by Little Things.</p>
-            <p>Once you save or share an export outside the app, its safety depends on where you put it. Treat it like sensitive personal data.</p>
-            <p>Little Things doesn&rsquo;t currently provide cloud backup or restore.</p>
+            <p>Once you save or share an export outside the app, its privacy depends on where you put it. Treat it like sensitive personal data.</p>
+            <p>Little Things doesn&rsquo;t provide its own cloud backup or restore. On iPhone, your local app data may be included in your own iCloud or computer backup &mdash; that backup is made and encrypted by Apple under your Apple Account, not by us. On Android, the app opts out of system auto-backup.</p>
           </section>
 
-          <section class="doc-section reveal" id="beta">
-            <h2>Beta feedback and analytics</h2>
-            <p>If you send beta feedback, the text you type and limited app context leave your device so feedback can be reviewed.</p>
-            <p>Beta builds may also send basic product analytics when a beta endpoint is configured. These events should not include names, note text, glint text, chronicle text, search text, birthdays, contact details, profile photos, or exports.</p>
+          <section class="doc-section reveal" id="feedback">
+            <h2>Feedback and analytics</h2>
+            <p>If you send feedback from inside the app, the text you type and limited app context (screen, build, platform) leave your device so it can be reviewed. Sending feedback is always your choice.</p>
+            <p>The app may also send basic product analytics. These events are privacy-bucketed — screen views, feature use, session length, build version, and count ranges. They never include names, note text, glint text, chronicle text, search text, birthdays, contact details, profile photos, or exports.</p>
+          </section>
+
+          <section class="doc-section reveal" id="crash">
+            <h2>Crash reports</h2>
+            <p>If Little Things crashes, a crash report leaves your device so the bug can be fixed. A crash report contains the technical stack trace, the app version, your device model, and your OS version.</p>
+            <p>Crash reports never include your people, notes, glints, photos, screenshots, your device&rsquo;s personal name, or any account identity &mdash; the app has no accounts. Crash reports are processed by Sentry on our behalf and are used only to diagnose and fix crashes.</p>
           </section>
 
           <section class="doc-section dark reveal" id="limits">
@@ -118,16 +122,32 @@
             </ul>
           </section>
 
+          <section class="doc-section reveal" id="contact">
+            <h2>Contact</h2>
+            <p>Questions about this policy, or want us to delete crash reports, analytics, or feedback tied to your install? Email <a href="mailto:kris@singhstudio.co.nz">kris@singhstudio.co.nz</a>.</p>
+          </section>
+
           <div class="source-card reveal">
             <strong>Want the other docs?</strong>
-            <a href="../index.html#docs">Back to docs</a>
+            <a href="./terms.html">Read the terms</a>
           </div>
         </article>
       </div>
     </main>
     <footer class="site-footer">
-      <div><a class="footer-brand" href="../index.html#top">Little Things</a><p>Small details, kept private.</p></div>
-      <nav><a href="./terms.html">Terms</a><a href="./data-promises.html">Data promises</a><a href="../index.html#docs">Docs</a></nav>
+      <div class="footer-top">
+        <a class="footer-brand" href="../index.html#top"><span class="seal" aria-hidden="true"><span class="seal-dot" style="--c: var(--observation)"></span><span class="seal-dot" style="--c: var(--interest)"></span><span class="seal-dot" style="--c: var(--gift)"></span><span class="seal-dot" style="--c: var(--moment)"></span><span class="seal-dot" style="--c: var(--support)"></span></span><span class="brand-word">Little <em>things</em></span></a>
+        <nav aria-label="Footer links">
+          <a href="../index.html#glints">The five</a>
+          <a href="../index.html#how">How it works</a>
+          <a href="./privacy.html">Privacy policy</a>
+          <a href="./terms.html">Terms</a>
+        </nav>
+      </div>
+      <div class="footer-coda">
+        <p class="footer-line">Remember the little things.</p>
+        <p class="footer-by">Made with care by Singh Studio &middot; Aotearoa New Zealand</p>
+      </div>
     </footer>
     <script src="../script.js"></script>
   </body>
