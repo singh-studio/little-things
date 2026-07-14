@@ -2,15 +2,23 @@
 
 Static public website for Little Things.
 
-Published with GitHub Pages from `main`.
+## Where it lives
 
-Beta interest submissions post to the private `little-things-intake` Cloudflare Worker, which writes to the private Little Things Beta Candidates Notion database.
+- **Source of truth:** this folder, in the app repo (`singh-studio/little-things-app`).
+- **Published copy:** the `singh-studio/little-things-site` repo, served by GitHub Pages at `www.getlittlethings.app` (apex 301s to `www.`). `main` there is protected — publish via PR; a `Website PR Check` runs before merge.
+- `reference/` is design research and is **not** published — it stays out of the site repo.
 
-The website acknowledgement is deliberately controlled:
+To publish: copy the changed files across to a branch of `little-things-site`, open a PR, merge. See `../docs/release/GITHUB_PUBLISHING_WORKFLOW.md`.
 
-- The form does not expose TestFlight public links.
-- After a successful Notion write, the form redirects to `beta-thanks.html`.
-- Candidate acknowledgement email is disabled by default.
-- Kris receives an admin notification to review the candidate, assign a beta testing group, and add them to TestFlight manually.
-- Apple sends the install email when Kris adds the tester in App Store Connect/TestFlight.
-- A warm TestFlight onboarding email is reserved for cases where a tester needs extra context or support.
+## Store-facing URLs (these are cited in App Store Connect / Play Console — don't break them)
+
+| Page | URL |
+|---|---|
+| Privacy policy | `https://getlittlethings.app/docs/privacy.html` |
+| Terms | `https://getlittlethings.app/docs/terms.html` |
+| Support | `https://getlittlethings.app/support.html` |
+| Marketing | `https://getlittlethings.app/` |
+
+## History
+
+The beta-intake form (Cloudflare Worker → Notion), its `beta-thanks.html` acknowledgement, `docs/beta-faq.html`, and `docs/data-promises.html` were all retired for the 1.0 launch (2026-07-15). The form was already removed in the 1.0 redesign; the orphaned pages were deleted alongside it. The app's in-app feedback feature was replaced by a store-review prompt at the same time, so the privacy policy and terms no longer describe a feedback channel.

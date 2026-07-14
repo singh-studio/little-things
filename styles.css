@@ -471,7 +471,7 @@ html.js [data-reveal].is-visible { transform: none; }
 [data-reveal-delay="5"] { transition-delay: 0.35s; }
 
 /* ==========================================================================
-   Document pages (privacy.html, terms.html, data-promises.html, beta-faq.html)
+   Document pages (privacy.html, terms.html, support.html)
    Rebuilt in the new brand so the legal pages match the site.
    ========================================================================= */
 .document-page { background: var(--background); }
